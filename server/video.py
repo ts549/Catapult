@@ -54,7 +54,7 @@ def save_file(request):
 
     if file and allowed_file(file.filename):
         myuuid = str(uuid.uuid4())
-        # filename = secure_filename(file.filename)
+        given_filename = secure_filename(file.filename)
         filename = "video.mp4"
         
         path = os.path.join(UPLOAD_FOLDER, myuuid)
@@ -67,6 +67,6 @@ def save_file(request):
         file_path = os.path.join(path, filename)
         file.save(file_path)
 
-        return file_path
+        return {"path": file_path, "name": given_filename}
 
 

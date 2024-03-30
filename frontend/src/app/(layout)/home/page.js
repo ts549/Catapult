@@ -11,39 +11,46 @@ import {
 } from '@mantine/core';
 import { IconSearch, IconFileUpload, IconVideo } from '@tabler/icons-react';
 import { Dropzone } from '@mantine/dropzone';
-import { useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import QuizItem from '../../../components/QuizItem';
+import { useLocalStorage } from '@mantine/hooks';
 
 function BaseDemo() {
   const [value, setValue] = useState('');
   const openRef = useRef(null);
   const [file, setFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useLocalStorage({
+    key: 'user-data',
+    serialize: JSON.stringify,
+    deserialize: JSON.parse,
+  });
 
   const submitFile = async () => {
+    setIsLoading(true);
     const body = new FormData();
     body.append('file', file[0]);
 
     const data = await fetch('http://127.0.0.1:5000/upload', {
-      // Your POST endpoint
       method: 'POST',
-      headers: {
-        // Content-Type may need to be completely **omitted**
-        // or you may need something
-        // "Content-Type": "You will perhaps need to define a content-type here"
-      },
-      body: body, // This is your file object
-    })
-      .then(
-        (response) => response.json() // if the response is a JSON object
-      )
-      .then(
-        (success) => console.log(success) // Handle the success response object
-      )
-      .catch(
-        (error) => console.log(error) // Handle the error response object
-      );
+      headers: {},
+      body: body,
+    });
+
+    const res = await data.json();
+
+    console.log(res);
+
+    setUser({
+      drafts: [
+        { ...res, lastEdited: new Date() },
+        ...(user ? user.drafts : []),
+      ],
+    });
 
     console.log(data);
+    setIsLoading(false);
+    setFile(null);
   };
 
   return (
@@ -53,6 +60,7 @@ function BaseDemo() {
       </Title>
 
       <Dropzone
+        loading={isLoading}
         openRef={openRef}
         onDrop={(files) => {
           setFile([...files]);
@@ -106,10 +114,7 @@ function BaseDemo() {
                   {file[0]?.name}
                 </Group>
               ))}
-              <Button
-                style={{ zIndex: 10000, pointerEvents: 'all' }}
-                onClick={submitFile}
-              >
+              <Button style={{ pointerEvents: 'all' }} onClick={submitFile}>
                 Sumbit
               </Button>
             </>
@@ -138,10 +143,17 @@ function BaseDemo() {
       >
         <Title order={3}>Drafts</Title>
         <Flex mt={12} direction="row" gap="lg" wrap={'wrap'}>
-          <QuizItem title="Quiz 1" questions={10} minutes={10} />
-          <QuizItem title="Quiz 1" questions={10} minutes={10} />
-          <QuizItem title="Quiz 1" questions={10} minutes={10} />
-          <QuizItem title="Quiz 1" questions={10} minutes={10} />
+          {user?.drafts?.map((draft) => (
+            <Fragment key={draft.id}>
+              <QuizItem
+                id={draft.id}
+                title={draft.file_name}
+                lastEdited={draft.lastEdited}
+                questions={10}
+                minutes={10}
+              />
+            </Fragment>
+          ))}
         </Flex>
       </Box>
     </div>
