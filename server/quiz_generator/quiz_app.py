@@ -38,9 +38,11 @@ def create_the_quiz_prompt_template():
             - Questions:
                 <Question1>: 
                 <Question2>:
+                ....
             - Answers:    
                 <Answer1>:
                 <Answer2>:
+                ....
             Example:
                 - Questions:
                     1. What is a binary search tree?
@@ -93,6 +95,7 @@ def main():
     quiz_type_1 ="multiple-choice"
     num_questions_type_2 = 1
     quiz_type_2 ="open-ended"
+    
     quiz_response = chain.invoke({"quiz_type_1":quiz_type_1,"num_questions_type_1":num_questions_type_1,"quiz_type_2":quiz_type_2,"num_questions_type_2":num_questions_type_2,"quiz_context":context})
     questions,answers = split_questions_answers(quiz_response)
     print(questions)
