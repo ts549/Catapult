@@ -18,9 +18,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-mantine-color-scheme="light">
       <body className={inter.className}>
-        <MantineProvider theme={{ colorScheme: 'light' }}>
+        <MantineProvider defaultColorScheme="light">
           <div className="flex flex-row h-screen w-screen">{children}</div>
         </MantineProvider>
       </body>

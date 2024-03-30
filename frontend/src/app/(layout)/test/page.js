@@ -1,7 +1,7 @@
 'use client';
 import { Group, Text, Title, rem } from '@mantine/core';
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
-import { Dropzone, DropzoneProps, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 
 function BaseDemo(props) {
   return (
