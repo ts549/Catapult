@@ -27,11 +27,11 @@ def create_the_quiz_prompt_template():
                 ....
                 Example:
                 - Questions:
-                - 1. What is the time complexity of a binary search tree?
-                    a. O(n)
-                    b. O(log n)
-                    c. O(n^2)
-                    d. O(1)
+                    1. What is the time complexity of a binary search tree?
+                        a. O(n)
+                        b. O(log n)
+                        c. O(n^2)
+                        d. O(1)
                 - Answers: 
                     1. b
         - Open-ended:
@@ -42,9 +42,9 @@ def create_the_quiz_prompt_template():
                 <Answer1>:
                 <Answer2>:
             Example:
-                Questions:
-                - 1. What is a binary search tree?
-                - 2. How are binary search trees implemented?
+                - Questions:
+                    1. What is a binary search tree?
+                    2. How are binary search trees implemented?
                 
                 - Answers: 
                     1. A binary search tree is a data structure that is used to store data in a sorted manner.
@@ -93,7 +93,7 @@ def main():
     quiz_type_1 ="multiple-choice"
     num_questions_type_2 = 1
     quiz_type_2 ="open-ended"
-    quiz_response = chain.invoke({"quiz_type":quiz_type_1,"num_questions":num_questions_type_1,"quiz_type":quiz_type_2,"num_questions":num_questions_type_2,"quiz_context":context})
+    quiz_response = chain.invoke({"quiz_type_1":quiz_type_1,"num_questions_type_1":num_questions_type_1,"quiz_type_2":quiz_type_2,"num_questions_type_2":num_questions_type_2,"quiz_context":context})
     questions,answers = split_questions_answers(quiz_response)
     print(questions)
     print(answers)
