@@ -4,9 +4,26 @@ from werkzeug.utils import secure_filename
 from flask import abort, make_response, jsonify
 import os
 import uuid
+import cv2
 
 
 model = whisper.load_model("base")
+
+def generate_frames(input_file):
+  dir_path = os.path.dirname(input_file)
+  video = cv2.VideoCapture
+
+  fps = int(video.get(cv2.CAP_PROP_FPS))
+
+  success, image = video.read()
+  count = 0
+
+  while success:
+    if count % fps == 0:
+      cv2.imwrite(f"{dir_path}\frame{count//fps}.jpg", image)
+    success, image = video.read()
+    count += 1
+  video.release()
 
 def split_video_audio(input_file):
   video = VideoFileClip(input_file)
@@ -54,7 +71,7 @@ def save_file(request):
 
     if file and allowed_file(file.filename):
         myuuid = str(uuid.uuid4())
-        # filename = secure_filename(file.filename)
+        given_filename = secure_filename(file.filename)
         filename = "video.mp4"
         
         path = os.path.join(UPLOAD_FOLDER, myuuid)
@@ -67,6 +84,6 @@ def save_file(request):
         file_path = os.path.join(path, filename)
         file.save(file_path)
 
-        return file_path
+        return {"path": file_path, "name": given_filename}
 
 
