@@ -19,8 +19,11 @@ def test():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     file_path = save_file(request)
+    print("DONE SAVING")
     audio_path = split_video_audio(file_path)
+    print("DONE SPLITTING")
     transcription = transcribe_audio(audio_path)
+    print("DONE TRANSCRIBING")
     
     data = {'status': 'Success', 'message': 'File saved', 'video_path': file_path, "audio_path": audio_path, "transcription": transcription }
     
