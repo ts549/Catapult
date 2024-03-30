@@ -21,6 +21,7 @@ from langchain.schema import BaseOutputParser
     # specify number qusetions
     # take in video and text information
 
+
 def get_response(prompt_question,):
     response = OpenAI.ChatCompletion.create(
         model="gpt-4",
