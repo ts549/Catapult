@@ -31,6 +31,7 @@ def get_response(prompt_question,):
     )
     
     return response["choices"][0]["message"]["content"]
+
 prompt = "Create a quiz about the basics of Python"
 quiz_python = get_response(prompt)
 
@@ -87,6 +88,8 @@ def create_the_quiz_prompt_emplate():
         - Answers:
             1. A binary search tree is a data structure that is used to store data in a sorted manner.
             2. Binary search trees are implemented using linked lists. 
+            
+        YOU HAVE TO MAKE SURE ALL THE DATA IS IN A JSON FORMAT WHICH MUST BE JSON PARSABLE FOR
     """
 
     prompt = PromptTemplate.from_template(template)

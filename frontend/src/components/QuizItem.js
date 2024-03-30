@@ -8,7 +8,7 @@ import {
 
 const QuizItem = ({ title, questions, minutes }) => {
   return (
-    <div className="flex flex-col p-4 bg-white rounded-sm min-w-[230px]">
+    <div className="flex flex-col p-4 bg-white rounded-sm min-w-[250px]">
       <Text fw={500} size="xl">
         {title}
       </Text>

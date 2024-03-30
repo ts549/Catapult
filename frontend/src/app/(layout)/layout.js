@@ -1,17 +1,7 @@
-import { Inter } from 'next/font/google';
-import Link from 'next/link';
-import '../globals.css';
 import '@mantine/core/styles.css';
 import '@mantine/dropzone/styles.css';
-import Navbar from '../../components/Navbar/Navbar';
 
-import { createTheme, MantineProvider } from '@mantine/core';
-
-const theme = createTheme({
-  /** Put your mantine theme override here */
-});
-
-const inter = Inter({ subsets: ['latin'] });
+import Navbar from '@/components/Navbar/Navbar';
 
 export const metadata = {
   title: 'Create Next App',
@@ -20,24 +10,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-mantine-color-scheme="light">
-      <body className={inter.className}>
-        <MantineProvider defaultColorScheme="light">
-          <div className="w-screen h-screen bg-light-pink flex justify-center align-center">
-            <div className='w-[95%] h-[100%] flex flex-row'>
-              <Navbar />
-              <div className='w-[80%] h-[100%] bg-white'>
-                <div className='w-[100%] h-[27%] flex justify-center items-center'>
-                  <div className='w-[95%] h-[80%] bg-[#999999] rounded-l'></div>
-                </div>
-                <div className='w-[100%] h-[73%]'>
-                  {children}
-                </div>
-              </div>
-            </div>
+    <div className="w-screen h-screen flex justify-center align-center">
+      <div className="w-full h-[100%] flex flex-row">
+        <Navbar />
+        <div className="w-[80%] h-[100%] bg-white overflow-y-auto">
+          <div className="w-[100%] h-[27%] flex justify-center items-center">
+            <div className="w-[95%] h-[80%] bg-[#999999] rounded-l"></div>
           </div>
-        </MantineProvider>
-      </body>
-    </html>
+          <div className="w-[100%] h-[73%]">{children}</div>
+        </div>
+      </div>
+    </div>
   );
 }
