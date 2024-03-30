@@ -1,16 +1,19 @@
 from langchain.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.schema import StrOutputParser
-import streamlit as st
 import os
+from openai import OpenAI
 
+# hardcode api key
+# api_key = "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"
+# OpenAI.api_key = api_key
 
 def create_the_quiz_prompt_template():
     """Create the prompt template for the quiz app."""
     
     template = """
         You are an expert quiz maker for technical fields. Let's think step by step and
-        create a quiz with {num_questions} {quiz_type} questions about the following concept/content: {quiz_context}.
+        create a quiz with {num_questions_type_1} {quiz_type_1} {num_questions_type_2} {quiz_type_2} questions about the following concept/content: {quiz_context}.
 
         The format of the quiz could be one of the following:
         - Multiple-choice: 
@@ -31,22 +34,6 @@ def create_the_quiz_prompt_template():
                     d. O(1)
                 - Answers: 
                     1. b
-        - True-false:
-            - Questions:
-                <Question1>: <True|False>
-                <Question2>: <True|False>
-                .....
-            - Answers:
-                <Answer1>: <True|False>
-                <Answer2>: <True|False>
-                .....
-            Example:
-            - Questions:
-                - 1. What is a binary search tree?
-                - 2. How are binary search trees implemented?
-            - Answers:
-                - 1. True
-                - 2. False
         - Open-ended:
             - Questions:
                 <Question1>: 
@@ -64,11 +51,26 @@ def create_the_quiz_prompt_template():
                     2. Binary search trees are implemented using linked lists.
     """
     prompt = ChatPromptTemplate.from_template(template)
-    prompt.format(num_questions=3, quiz_type="multiple-choice", quiz_context="Data Structures in Python Programming")
+    prompt.format(num_questions_type_1=3, quiz_type_1="multiple-choice", num_questions_type_2=1, quiz_type_2="open-ended", quiz_context="Data Structures in Python Programming")
     
     return prompt
 
-def create_quiz_chain(prompt_template,llm, openai_api_key):
+# def llm_model(prompt):
+#     key_val = "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"
+#     os.environ["OPENAI_API_KEY"] = key_val
+#     # os.getenv("OPENAI_API_KEY")
+
+#     client = OpenAI()
+#     response = client.chat.completions.create(model="gpt-4", 
+#                              messages=
+#                              [
+#                                  {"role": "system", "content": "You are helpful assistant."},
+#                                  {"role": "user", "content": prompt}   
+#                              ])
+#     print(response.choices[0].message.content)
+#     return response.choices[0].message.content
+
+def create_quiz_chain(prompt_template,llm):
     """Creates the chain for the quiz app."""
     return prompt_template | llm |  StrOutputParser()
 
@@ -79,30 +81,39 @@ def split_questions_answers(quiz_response):
     return questions, answers
 
 def main():
-    st.title("Quiz App")
-    st.write("This app generates a quiz based on a given context.")
-    openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
     prompt_template = create_the_quiz_prompt_template()
-    if openai_api_key != "":
-        os.environ["OPENAI_API_KEY"] = openai_api_key
-    else:
-        st.error("Please enter your OpenAI API key")
+    # llm = llm_model("Generate a quiz for biology")
+    key_val = "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"
+    os.environ["OPENAI_API_KEY"] = key_val
     llm = ChatOpenAI(temperature=0.0)
-    chain = create_quiz_chain(prompt_template,llm, openai_api_key)
-    context = st.text_area("Enter the concept/context for the quiz")
-    num_questions = st.number_input("Enter the number of questions",min_value=1,max_value=10,value=3)
-    quiz_type = st.selectbox("Select the quiz type",["multiple-choice","true-false", "open-ended"])
-    if st.button("Generate Quiz"):
-        quiz_response = chain.invoke({"quiz_type":quiz_type,"num_questions":num_questions,"quiz_context":context})
-        st.write("Quiz Generated!")        
-        questions,answers = split_questions_answers(quiz_response)
-        st.session_state.answers = answers
-        st.session_state.questions = questions
-        st.write(questions)
-    if st.button("Show Answers"):
-        st.markdown(st.session_state.questions)
-        st.write("----")
-        st.markdown(st.session_state.answers)
+    chain = create_quiz_chain(prompt_template,llm)
+
+    context = "Data Structures in Python Programming"
+    num_questions_type_1 = 3
+    quiz_type_1 ="multiple-choice"
+    num_questions_type_2 = 1
+    quiz_type_2 ="open-ended"
+    quiz_response = chain.invoke({"quiz_type":quiz_type_1,"num_questions":num_questions_type_1,"quiz_type":quiz_type_2,"num_questions":num_questions_type_2,"quiz_context":context})
+    questions,answers = split_questions_answers(quiz_response)
+    print(questions)
+    print(answers)
+
+    # front-end
+    #-----------------------------------
+    # context = st.text_area("Enter the concept/context for the quiz")
+    # num_questions = st.number_input("Enter the number of questions",min_value=1,max_value=10,value=3)
+    # quiz_type = st.selectbox("Select the quiz type",["multiple-choice","true-false", "open-ended"])
+    # if st.button("Generate Quiz"):
+    #     quiz_response = chain.invoke({"quiz_type":quiz_type,"num_questions":num_questions,"quiz_context":context})
+    #     st.write("Quiz Generated!")        
+    #     questions,answers = split_questions_answers(quiz_response)
+    #     st.session_state.answers = answers
+    #     st.session_state.questions = questions
+    #     st.write(questions)
+    # if st.button("Show Answers"):
+    #     st.markdown(st.session_state.questions)
+    #     st.write("----")
+    #     st.markdown(st.session_state.answers)
         
 if __name__=="__main__":
     main()

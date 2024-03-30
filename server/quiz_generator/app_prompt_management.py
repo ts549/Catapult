@@ -2,12 +2,8 @@ from openai import OpenAI
 import os
 
 # need to fit with react model
-def llm_model(prompt,openai_api_key):
-    if openai_api_key != "":
-        os.environ["OPENAI_API_KEY"] = openai_api_key
-    # else:
-    #     st.error("Please enter your OpenAI API key")
-    #     return
+def llm_model(prompt):
+    os.getenv["OPENAI_KEY"]
     client = OpenAI()
     response = client.chat.completions.create(model="gpt-4", 
                              messages=
@@ -17,4 +13,6 @@ def llm_model(prompt,openai_api_key):
                              ])
     print(response.choices[0].message.content)
     return response.choices[0].message.content
+
+# llm_model("Generate a quiz for biology",os.getenv("OPENAI_KEY"))
 
