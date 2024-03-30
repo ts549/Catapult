@@ -1,6 +1,14 @@
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import './globals.css';
+import '@mantine/core/styles.css';
+import '@mantine/dropzone/styles.css';
+
+import { createTheme, MantineProvider } from '@mantine/core';
+
+const theme = createTheme({
+  /** Put your mantine theme override here */
+});
 import Navbar from '../components/Navbar/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -12,8 +20,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-mantine-color-scheme="light">
       <body className={inter.className}>
+        <MantineProvider defaultColorScheme="light">
+          <div className="flex flex-row h-screen w-screen">{children}</div>
+        </MantineProvider>
         <div className="w-screen h-screen bg-light-pink flex justify-center align-center">
           <div className='w-[95%] h-[100%] flex flex-row'>
             <Navbar />
