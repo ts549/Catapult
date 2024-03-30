@@ -13,37 +13,43 @@ import { IconSearch, IconFileUpload, IconVideo } from '@tabler/icons-react';
 import { Dropzone } from '@mantine/dropzone';
 import { useRef, useState } from 'react';
 import QuizItem from '../../../components/QuizItem';
+import { Folder } from 'tabler-icons-react';
+import { Select, TextInput } from '@mantine/core';
+import classes from './ContainedInput.module.css';
 
 function BaseDemo() {
   const [value, setValue] = useState('');
   const openRef = useRef(null);
   const [file, setFile] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   const submitFile = async () => {
-    const body = new FormData();
-    body.append('file', file[0]);
+    // const body = new FormData();
+    // body.append('file', file[0]);
 
-    const data = await fetch('http://127.0.0.1:5000/upload', {
-      // Your POST endpoint
-      method: 'POST',
-      headers: {
-        // Content-Type may need to be completely **omitted**
-        // or you may need something
-        // "Content-Type": "You will perhaps need to define a content-type here"
-      },
-      body: body, // This is your file object
-    })
-      .then(
-        (response) => response.json() // if the response is a JSON object
-      )
-      .then(
-        (success) => console.log(success) // Handle the success response object
-      )
-      .catch(
-        (error) => console.log(error) // Handle the error response object
-      );
+    // const data = await fetch('http://127.0.0.1:5000/upload', {
+    //   // Your POST endpoint
+    //   method: 'POST',
+    //   headers: {
+    //     // Content-Type may need to be completely **omitted**
+    //     // or you may need something
+    //     // "Content-Type": "You will perhaps need to define a content-type here"
+    //   },
+    //   body: body, // This is your file object
+    // })
+    //   .then(
+    //     (response) => response.json() // if the response is a JSON object
+    //   )
+    //   .then(
+    //     (success) => console.log(success) // Handle the success response object
+    //   )
+    //   .catch(
+    //     (error) => console.log(error) // Handle the error response object
+    //   );
 
-    console.log(data);
+    // console.log(data);
+
+    setShowDetails(true);
   };
 
   return (
@@ -110,12 +116,44 @@ function BaseDemo() {
                 style={{ zIndex: 10000, pointerEvents: 'all' }}
                 onClick={submitFile}
               >
-                Sumbit
+                Submit
               </Button>
             </>
           )}
         </Group>
       </Dropzone>
+
+      <Button
+        style={{ zIndex: 10000, pointerEvents: 'all' }}
+        onClick={submitFile}
+      >
+        Submit
+      </Button>
+      {
+        showDetails ? (
+          <div className='w-full h-[400px] flex flex-col justify-center items-center'>
+            <div className='w-[90%] h-[50px] flex flex-row items-center gap-3'>
+              <Folder
+                size={48}
+                strokeWidth={0.5}
+                color={'black'}
+              />
+              <div>Select folder...</div>
+            </div>
+              <TextInput label="Shipping address" placeholder="15329 Huston 21st" classNames={classes} />
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+          </div>
+        )
+        : <div />
+      }
 
       <Flex direction="row" justify="space-between" mt={36} mb={12}>
         <Title order={2}>Quizzes</Title>

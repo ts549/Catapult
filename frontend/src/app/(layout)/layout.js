@@ -13,11 +13,11 @@ export default function RootLayout({ children }) {
     <div className="w-screen h-screen flex justify-center align-center">
       <div className="w-full h-[100%] flex flex-row">
         <Navbar />
-        <div className="w-[80%] h-[100%] bg-white overflow-y-auto">
+        <div className="w-[80%] h-[100%] bg-white">
           <div className="w-[100%] h-[27%] flex justify-center items-center">
             <div className="w-[95%] h-[80%] bg-[#999999] rounded-l"></div>
           </div>
-          <div className="w-[100%] h-[73%]">{children}</div>
+          <div className="w-[100%] h-[73%] overflow-y-auto">{children}</div>
         </div>
       </div>
     </div>

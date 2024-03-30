@@ -14,19 +14,19 @@ function Navbar() {
                 </div>
             </div>
             <div className='w-[80%] h-[50%] ml-5 mt-[50px] flex flex-col gap-3'>
-                <div className='flex flex-row gap-5'>
+                <div className='flex flex-row gap-5 items-center'>
                     <div className='w-[30px] h-[30px] bg-[#d9d9d9]' />
                     <Link href=''>Home</Link>
                 </div>
-                <div className='flex flex-row gap-5'>
+                <div className='flex flex-row gap-5 items-center'>
                     <div className='w-[30px] h-[30px] bg-[#d9d9d9]' />
                     <Link href=''>Profile</Link>
                 </div>
-                <div className='flex flex-row gap-5'>
+                <div className='flex flex-row gap-5 items-center'>
                     <div className='w-[30px] h-[30px] bg-[#d9d9d9]' />
                     <Link href=''>System</Link>
                 </div>
-                <div className='flex flex-row gap-5'>
+                <div className='flex flex-row gap-5 items-center'>
                     <div className='w-[30px] h-[30px] bg-[#d9d9d9]' />
                     <Link href=''>Log Out</Link>
                 </div>
