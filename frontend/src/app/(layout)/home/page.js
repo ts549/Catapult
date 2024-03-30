@@ -9,17 +9,10 @@ import {
   Title,
   rem,
 } from '@mantine/core';
-import {
-  IconUpload,
-  IconPhoto,
-  IconX,
-  IconSearch,
-  IconFileUpload,
-  IconVideo,
-} from '@tabler/icons-react';
-import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { IconSearch, IconFileUpload, IconVideo } from '@tabler/icons-react';
+import { Dropzone } from '@mantine/dropzone';
 import { useRef, useState } from 'react';
-import QuizItem from '../../../../components/QuizItem';
+import QuizItem from '../../../components/QuizItem';
 
 function BaseDemo() {
   const [value, setValue] = useState('');
