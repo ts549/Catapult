@@ -12,7 +12,6 @@ def test():
 
 if __name__ == '__main__':
     app.run(host='::1', debug=True)
-    
 
 UPLOAD_FOLDER = '/videos'
 ALLOWED_EXTENSIONS = {'mp4', 'mov'}
@@ -30,19 +29,18 @@ def allowed_file(filename):
 def upload_file():
     # check if the post request has the file part
     if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    
+        return {'status': '400', 'message': 'No file part'}
+
     file = request.files['file']
     # if user does not select file, browser also
-    
+
     # submit an empty part without filename
     if file.filename == '':
-        flash('No selected file')
-        return redirect(request.url)
+        return {'status': '400', 'message': 'No selected file'}
+
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect(url_for('uploaded_file', filename=filename))
-    
-    return ""
+        return {'status': '200', 'message': 'Success'}
+
+    return {'status': '400', 'message': 'Unprocessed file'}
