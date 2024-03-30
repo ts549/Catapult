@@ -68,7 +68,6 @@ def create_the_quiz_prompt_template():
     
     return prompt
 
-
 def create_quiz_chain(prompt_template,llm, openai_api_key):
     """Creates the chain for the quiz app."""
     return prompt_template | llm |  StrOutputParser()
@@ -78,3 +77,32 @@ def split_questions_answers(quiz_response):
     questions = quiz_response.split("Answers:")[0]
     answers = quiz_response.split("Answers:")[1]
     return questions, answers
+
+def main():
+    st.title("Quiz App")
+    st.write("This app generates a quiz based on a given context.")
+    openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
+    prompt_template = create_the_quiz_prompt_template()
+    if openai_api_key != "":
+        os.environ["OPENAI_API_KEY"] = openai_api_key
+    else:
+        st.error("Please enter your OpenAI API key")
+    llm = ChatOpenAI(temperature=0.0)
+    chain = create_quiz_chain(prompt_template,llm, openai_api_key)
+    context = st.text_area("Enter the concept/context for the quiz")
+    num_questions = st.number_input("Enter the number of questions",min_value=1,max_value=10,value=3)
+    quiz_type = st.selectbox("Select the quiz type",["multiple-choice","true-false", "open-ended"])
+    if st.button("Generate Quiz"):
+        quiz_response = chain.invoke({"quiz_type":quiz_type,"num_questions":num_questions,"quiz_context":context})
+        st.write("Quiz Generated!")        
+        questions,answers = split_questions_answers(quiz_response)
+        st.session_state.answers = answers
+        st.session_state.questions = questions
+        st.write(questions)
+    if st.button("Show Answers"):
+        st.markdown(st.session_state.questions)
+        st.write("----")
+        st.markdown(st.session_state.answers)
+        
+if __name__=="__main__":
+    main()
