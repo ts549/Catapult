@@ -21,6 +21,7 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
+import { motion as m } from "framer-motion";
 
 function page({ params }) {
   const [user, setUser] = useLocalStorage({
@@ -104,52 +105,59 @@ const Question = ({ question, index }) => {
   }
 
   return (
-    <Flex direction="row" gap="xl">
-      <IconMenu2 />
-      <Flex direction="column" className="w-full">
-        <Text>
-          {index + 1}. {question.question}
-        </Text>
-        {choices?.map((choice) => (
-          <Flex mt={20}>
-            <Center
-              className={`h-[80%] aspect-square rounded-full ${
-                question?.answer === choice ? 'bg-green-400' : 'bg-[#D9D9D9]'
-              }`}
-              mr={20}
-            >
-              {question?.answer === choice ? (
-                <IconCheck size={16} />
-              ) : (
-                <IconX size={16} />
-              )}
-            </Center>
-            <Input
-              className="w-full"
-              value={choice}
-              rightSection={<IconEdit size={16} />}
-              radius={0}
-            />
-          </Flex>
-        ))}
+    <m.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration:0.75, ease: "easeOut" }}
+      className="text-gray-900 absolute top-0 left-0 w-full h-full bg-green-100 lg:px-48 px-16"
+    >
+      <Flex direction="row" gap="xl">
+        <IconMenu2 />
+        <Flex direction="column" className="w-full">
+          <Text>
+            {index + 1}. {question.question}
+          </Text>
+          {choices?.map((choice) => (
+            <Flex mt={20}>
+              <Center
+                className={`h-[80%] aspect-square rounded-full ${
+                  question?.answer === choice ? 'bg-green-400' : 'bg-[#D9D9D9]'
+                }`}
+                mr={20}
+              >
+                {question?.answer === choice ? (
+                  <IconCheck size={16} />
+                ) : (
+                  <IconX size={16} />
+                )}
+              </Center>
+              <Input
+                className="w-full"
+                value={choice}
+                rightSection={<IconEdit size={16} />}
+                radius={0}
+              />
+            </Flex>
+          ))}
 
-        {choices === null && (
-          <Flex mt={20}>
-            <Center
-              className={`h-[28.8px] w-[28.8px] aspect-square rounded-full bg-[#D9D9D9]`}
-              mr={20}
-            >
-              <IconLineDashed size={16} />
-            </Center>
-            <Textarea
-              className="w-full"
-              value={question?.answer}
-              disabled
-              radius={0}
-            />
-          </Flex>
-        )}
+          {choices === null && (
+            <Flex mt={20}>
+              <Center
+                className={`h-[28.8px] w-[28.8px] aspect-square rounded-full bg-[#D9D9D9]`}
+                mr={20}
+              >
+                <IconLineDashed size={16} />
+              </Center>
+              <Textarea
+                className="w-full"
+                value={question?.answer}
+                disabled
+                radius={0}
+              />
+            </Flex>
+          )}
+        </Flex>
       </Flex>
-    </Flex>
+    </m.div>
   );
 };

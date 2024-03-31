@@ -10,7 +10,7 @@ function Navbar() {
       <Group className="mx-auto" gap="sm" mb={60}>
         <Image src="/logo.png" alt="logo" width={36} height={36} />
         <Title className="" order={3}>
-          Acumentor
+          acumentor
         </Title>
       </Group>
 

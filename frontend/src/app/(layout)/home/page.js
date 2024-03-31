@@ -20,6 +20,7 @@ import { Folder } from 'tabler-icons-react';
 import { Select, TextInput } from '@mantine/core';
 import classes from './ContainedInput.module.css';
 import { ClockHour4 } from 'tabler-icons-react';
+import { motion as m } from "framer-motion"; 
 
 function BaseDemo() {
   // const [value, setValue] = useState('');
@@ -79,184 +80,191 @@ function BaseDemo() {
   };
 
   return (
-    <div className="px-8 py-4 w-full">
-      <Title order={2} mb={12}>
-        Create Quiz
-      </Title>
-      <div className="">
-        <LoadingOverlay visible={isLoading} />
-        <Dropzone
-          // loading={isLoading}
-          openRef={openRef}
-          onDrop={(files) => {
-            setFile([...files]);
-            console.log('accepted files', files);
-          }}
-          multiple={false}
-          accept={['video/mp4', 'video/*']}
-          activateOnClick={!file}
-        >
-          <Group
-            justify="center"
-            gap="xl"
-            mih={120}
-            style={{ pointerEvents: 'none' }}
+    <m.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration:0.75, ease: "easeOut" }}
+      className="text-gray-900 absolute top-0 left-0 w-full h-full bg-blue-100 lg:px-48 px-16"
+    >
+      <div className="px-8 py-4 w-full">
+        <Title order={2} mb={12}>
+          Create Quiz
+        </Title>
+        <div className="">
+          <LoadingOverlay visible={isLoading} />
+          <Dropzone
+            // loading={isLoading}
+            openRef={openRef}
+            onDrop={(files) => {
+              setFile([...files]);
+              console.log('accepted files', files);
+            }}
+            multiple={false}
+            accept={['video/mp4', 'video/*']}
+            activateOnClick={!file}
           >
-            {!(file?.length > 0) && (
-              <>
-                <IconFileUpload
-                  style={{
-                    width: rem(42),
-                    height: rem(42),
-                    color: 'var(--mantine-color-dimmed)',
+            <Group
+              justify="center"
+              gap="xl"
+              mih={120}
+              style={{ pointerEvents: 'none' }}
+            >
+              {!(file?.length > 0) && (
+                <>
+                  <IconFileUpload
+                    style={{
+                      width: rem(42),
+                      height: rem(42),
+                      color: 'var(--mantine-color-dimmed)',
+                    }}
+                    stroke={1.5}
+                  />
+                </>
+              )}
+
+              {!(file?.length > 0) && (
+                <div>
+                  <Text size="xl" inline>
+                    Drag videos or pdfs here or click to select files
+                  </Text>
+                  <Text size="sm" c="dimmed" inline mt={7}>
+                    Attach as many files as you like
+                  </Text>
+                </div>
+              )}
+              {file && file?.length > 0 && (
+                <>
+                  {file?.map((f) => (
+                    <Group>
+                      <IconVideo
+                        style={{
+                          width: rem(20),
+                          height: rem(20),
+                          color: 'var(--mantine-color-dimmed)',
+                        }}
+                        stroke={1.5}
+                      />
+                      {file[0]?.name}
+                    </Group>
+                  ))}
+                  {/* <Button
+                  style={{ pointerEvents: 'all' }}
+                  onClick={() => {
+                    setShowDetails(true);
                   }}
-                  stroke={1.5}
-                />
-              </>
-            )}
-
-            {!(file?.length > 0) && (
-              <div>
-                <Text size="xl" inline>
-                  Drag videos or pdfs here or click to select files
-                </Text>
-                <Text size="sm" c="dimmed" inline mt={7}>
-                  Attach as many files as you like
-                </Text>
-              </div>
-            )}
-            {file && file?.length > 0 && (
-              <>
-                {file?.map((f) => (
-                  <Group>
-                    <IconVideo
-                      style={{
-                        width: rem(20),
-                        height: rem(20),
-                        color: 'var(--mantine-color-dimmed)',
-                      }}
-                      stroke={1.5}
-                    />
-                    {file[0]?.name}
-                  </Group>
-                ))}
-                {/* <Button
-                style={{ pointerEvents: 'all' }}
-                onClick={() => {
-                  setShowDetails(true);
-                }}
-              >
-                Submit
-              </Button> */}
-              </>
-            )}
-          </Group>
-        </Dropzone>
-        {file && file?.length > 0 ? (
-          <div className="w-full h-auto mt-10 mb-10 flex flex-col justify-center items-center gap-1">
-            {/* <div className="w-[90%] h-[50px] flex flex-row items-center gap-3">
-              <Folder size={48} strokeWidth={0.5} color={'black'} />
-              <div>Select folder...</div>
-            </div> */}
-            <div className="w-full h-auto">
-              <TextInput
-                label="Quiz Name"
-                placeholder="Name"
-                classNames={classes}
-                onChange={(event) => {
-                  setQuizName(event.target.value);
-                }}
-              />
-            </div>
-            <div className="w-full h-[90px] flex flex-row items-center gap-5">
-              <Select
-                comboboxProps={{ withinPortal: true }}
-                data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
-                placeholder="Pick one"
-                label="Multiple Choice"
-                classNames={classes}
-                onChange={(value) => {
-                  setNumMC(value);
-                }}
-              />
-              <Select
-                comboboxProps={{ withinPortal: true }}
-                data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
-                placeholder="Pick one"
-                label="True/False"
-                classNames={classes}
-                onChange={(value) => {
-                  setNumTF(value);
-                }}
-              />
-              <Select
-                comboboxProps={{ withinPortal: true }}
-                data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
-                placeholder="Pick one"
-                label="Short answer"
-                classNames={classes}
-                onChange={(value) => {
-                  setNumSA(value);
-                }}
-              />
-              <Select
-                comboboxProps={{ withinPortal: true }}
-                data={['0', '1', '2', '3', '4']}
-                placeholder="Pick one"
-                label="Variations"
-                classNames={classes}
-                onChange={(value) => {
-                  setNumVA(value);
-                }}
-              />
-              {/* <div className="w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5">
-                <ClockHour4 size={32} strokeWidth={1} color={'black'} />~
-                {numMC &&
-                  numTF &&
-                  numSA &&
-                  (parseInt(numMC) + parseInt(numTF) + parseInt(numSA)) *
-                    1.5}{' '}
-                mins
+                >
+                  Submit
+                </Button> */}
+                </>
+              )}
+            </Group>
+          </Dropzone>
+          {file && file?.length > 0 ? (
+            <div className="w-full h-auto mt-10 mb-10 flex flex-col justify-center items-center gap-1">
+              {/* <div className="w-[90%] h-[50px] flex flex-row items-center gap-3">
+                <Folder size={48} strokeWidth={0.5} color={'black'} />
+                <div>Select folder...</div>
               </div> */}
+              <div className="w-full h-auto">
+                <TextInput
+                  label="Quiz Name"
+                  placeholder="Name"
+                  classNames={classes}
+                  onChange={(event) => {
+                    setQuizName(event.target.value);
+                  }}
+                />
+              </div>
+              <div className="w-full h-[90px] flex flex-row items-center gap-5">
+                <Select
+                  comboboxProps={{ withinPortal: true }}
+                  data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+                  placeholder="Pick one"
+                  label="Multiple Choice"
+                  classNames={classes}
+                  onChange={(value) => {
+                    setNumMC(value);
+                  }}
+                />
+                <Select
+                  comboboxProps={{ withinPortal: true }}
+                  data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+                  placeholder="Pick one"
+                  label="True/False"
+                  classNames={classes}
+                  onChange={(value) => {
+                    setNumTF(value);
+                  }}
+                />
+                <Select
+                  comboboxProps={{ withinPortal: true }}
+                  data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+                  placeholder="Pick one"
+                  label="Short answer"
+                  classNames={classes}
+                  onChange={(value) => {
+                    setNumSA(value);
+                  }}
+                />
+                <Select
+                  comboboxProps={{ withinPortal: true }}
+                  data={['0', '1', '2', '3', '4']}
+                  placeholder="Pick one"
+                  label="Variations"
+                  classNames={classes}
+                  onChange={(value) => {
+                    setNumVA(value);
+                  }}
+                />
+                {/* <div className="w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5">
+                  <ClockHour4 size={32} strokeWidth={1} color={'black'} />~
+                  {numMC &&
+                    numTF &&
+                    numSA &&
+                    (parseInt(numMC) + parseInt(numTF) + parseInt(numSA)) *
+                      1.5}{' '}
+                  mins
+                </div> */}
+              </div>
+              <Button mt={16} fullWidth onClick={submitFile}>
+                Generate Questions
+              </Button>
             </div>
-            <Button mt={16} fullWidth onClick={submitFile}>
-              Generate Questions
-            </Button>
-          </div>
-        ) : (
-          <div />
-        )}
+          ) : (
+            <div />
+          )}
 
-        <Flex direction="row" justify="space-between" mt={36} mb={12}>
-          <Title order={2}>Quizzes</Title>
+          <Flex direction="row" justify="space-between" mt={36} mb={12}>
+            <Title order={2}>Quizzes</Title>
 
-          {/* <Input
-            placeholder="Search for quizzes"
-            rightSection={<IconSearch size={16} />}
-            value={value}
-            onChange={(e) => setValue(e.currentTarget.value)}
-          /> */}
-        </Flex>
+            {/* <Input
+              placeholder="Search for quizzes"
+              rightSection={<IconSearch size={16} />}
+              value={value}
+              onChange={(e) => setValue(e.currentTarget.value)}
+            /> */}
+          </Flex>
+        </div>
+
+        <Box
+          my="xl"
+          w="100%"
+          p="lg"
+          href="/"
+          bg="#FEEAEA"
+          style={{ borderLeft: 4, borderColor: 'red', borderStyle: 'solid' }}
+        >
+          <Title order={3}>Drafts</Title>
+          <Flex mt={12} direction="row" gap="lg" wrap={'wrap'}>
+            {user?.drafts?.map((draft) => (
+              <Fragment key={draft.id}>
+                <QuizItem item={draft} />
+              </Fragment>
+            ))}
+          </Flex>
+        </Box>
       </div>
-
-      <Box
-        my="xl"
-        w="100%"
-        p="lg"
-        href="/"
-        bg="#FEEAEA"
-        style={{ borderLeft: 4, borderColor: 'red', borderStyle: 'solid' }}
-      >
-        <Title order={3}>Drafts</Title>
-        <Flex mt={12} direction="row" gap="lg" wrap={'wrap'}>
-          {user?.drafts?.map((draft) => (
-            <Fragment key={draft.id}>
-              <QuizItem item={draft} />
-            </Fragment>
-          ))}
-        </Flex>
-      </Box>
-    </div>
+    </m.div>
   );
 }
 
