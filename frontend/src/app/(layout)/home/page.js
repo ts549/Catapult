@@ -30,11 +30,19 @@ function BaseDemo() {
     deserialize: JSON.parse,
   });
   const [showDetails, setShowDetails] = useState(false);
+  const [quizName, setQuizName] = useState("");
+  const [numMC, setNumMC] = useState("");
+  const [numTF, setNumTF] = useState("");
+  const [numSA, setNumSA] = useState("");
 
   const submitFile = async () => {
     setIsLoading(true);
     const body = new FormData();
     body.append('file', file[0]);
+    body.append('quiz_name', quizName);
+    body.append('num_mc', numMC);
+    body.append('num_tf', numTF);
+    body.append('num_sa', numSA);
 
     const data = await fetch('http://127.0.0.1:5000/upload', {
       method: 'POST',
@@ -130,7 +138,7 @@ function BaseDemo() {
       </Dropzone>
       {
         showDetails ? (
-          <div className='w-full h-auto mt-10 flex flex-col justify-center items-center gap-1'>
+          <div className='w-full h-auto mt-10 mb-10 flex flex-col justify-center items-center gap-1'>
             <div className='w-[90%] h-[50px] flex flex-row items-center gap-3'>
               <Folder
                 size={48}
@@ -140,7 +148,9 @@ function BaseDemo() {
               <div>Select folder...</div>
             </div>
             <div className='w-[90%] h-auto'>
-              <TextInput label="Quiz Name" placeholder="Name" classNames={classes} />
+              <TextInput label="Quiz Name" placeholder="Name" classNames={classes} onChange={(event) => {
+                setQuizName(event.target.value);
+              }} />
             </div>
             <div className='w-[90%] h-[90px] flex flex-row items-center gap-5'>
               <Select
@@ -149,6 +159,9 @@ function BaseDemo() {
                 placeholder="Pick one"
                 label="Multiple Choice"
                 classNames={classes}
+                onChange={(value) => {
+                  setNumMC(value);
+                }}
               />
               <Select
                 comboboxProps={{ withinPortal: true }}
@@ -156,6 +169,9 @@ function BaseDemo() {
                 placeholder="Pick one"
                 label="True/False"
                 classNames={classes}
+                onChange={(value) => {
+                  setNumTF(value);
+                }}
               />
               <Select
                 comboboxProps={{ withinPortal: true }}
@@ -163,6 +179,9 @@ function BaseDemo() {
                 placeholder="Pick one"
                 label="Short answer"
                 classNames={classes}
+                onChange={(value) => {
+                  setNumSA(value);
+                }}
               />
               <div className='w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5'>
                 <ClockHour4
