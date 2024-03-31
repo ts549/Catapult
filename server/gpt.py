@@ -17,6 +17,8 @@ interface Question {
   answer?: string;
   question_type: "MULTIPLE_CHOICE" | "TRUE_FALSE" | "SHORT_ANSWER";
 }[]
+
+When creating different variations of the quizes ENSURE BOTH HAVE THE SAME ROOT KEY VALUE: 'questions'.
 """
 
 def openai_call(prompt, variations):
