@@ -1,81 +1,89 @@
 import cv2
 import os
-import shutil
+#import shutil
+import base64
+FRAMES_SKIPPED = 120
+
+from google.cloud import vision
+from flask import abort, make_response, jsonify
 
 
-FRAMES_SKIPPED = 50
+def detect_text(byte_string):
+    detected_text = ""
+    client = vision.ImageAnnotatorClient()
+    decoded_text = byte_string.decode('utf-8')
+
+    image = vision.Image(content=decoded_text)
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+    if response.error.message:
+        abort(make_response(jsonify(message="OCR failed"), 400))
+    if texts:
+        detected_text = texts[0].description
+
+    return(detected_text)
+
+def encode_frame(frame):
+    _, buffer = cv2.imencode('.jpg', frame)
+    base64_encoded = base64.b64encode(buffer) #.decode('utf-8')
+    return base64_encoded
+
 
 def capture_frames(video_path):
+    print(os.getcwd())
     frame_count = 0
-    frame_paths = []
-    frame = cv2.VideoCapture(video_path)
-    status, image =frame.read()
+    frame_bytes = []
+    cap = cv2.VideoCapture(video_path)
+    W, H = 1080, 560
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, W)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, H)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+    cap.set(cv2.CAP_PROP_FPS, 10)
+    status, image = cap.read()
 
-    try: 
-        
-        # creating a folder named data 
-        if not os.path.exists('data'): 
-            os.makedirs('data') 
-
-        # if not created then raise error 
-    except OSError: 
-        print ('Error: Creating directory of data') 
-        
     while status: #continue making frames while video is still left
-        status, image = frame.read()
-        if frame_count % FRAMES_SKIPPED == 0:
-            new_path = './data/frame' + str(frame_count) + '.png'
-            cv2.imwrite(new_path, image)       
-            frame_paths.append(new_path)     
-        frame_count +=1
-
         
-        '''
-        1. recheck status
-        2. check frame count
-        3. if correct frame count --> save the image and add the path to frame paths'''
-    '''If success is true --> update frame count
-    check frame count--> we only want every 30-60 frames
-    if its the frame we want --> store the image
-    '''
-    frame.release() 
+        status, image = cap.read()
+        if frame_count % FRAMES_SKIPPED == 0:
+            print('d')
+            frame_bytes.append(encode_frame(image))     
+        frame_count +=1
+    cap.release() 
     cv2.destroyAllWindows() 
-    return frame_paths
+    return frame_bytes
 
-
-def extract_text(existing_text, photo_path):
+def extract_text(existing_text, photo_byte):
     new_frame_text = ""
-    
-    #screenshot = cv2.
-
-    #return frame_text
-
-    pass
+    text = detect_text(photo_byte)
+    if text not in new_frame_text:
+        new_frame_text = existing_text + text
+    else:
+        new_frame_text = existing_text
+    return new_frame_text 
 
 def build_transcript(video_path):
     image_to_text = ""
-    all_image_paths = capture_frames(video_path)
-    for image_path in all_image_paths:
-        image_to_text = extract_text(image_to_text, image_path)
+    all_image_bytes = capture_frames(video_path)
+    for image_byte in all_image_bytes:
+        image_to_text = extract_text(image_to_text, image_byte)
 
-
-    #img_paths, img_count = capture_frames(video_path)
-   # return image_to_text
-    shutil.rmtree('./data')
-
-    pass
-#initialize string to store all printed text/handwriting from lecture video
+    print(image_to_text)
+    return image_to_text
 
 ''''
 Now with collection of images:
 for loop through folder --> pass each image to extract text
 if new text is in image_to_text --> dont add it to the new string 
 
-
-delete all images
 return large string
 '''
 
 if __name__ == "__main__":
-    capture_frames('./test_lecture_vid.mov')
-    shutil.rmtree('./data')
+    # Example usage
+    # input_file = './test_lecture_vid.mov'
+    # output_file = './processed_video.mov'
+    # frame_interval = 60  # Select every 5th frame for processing
+
+    # process_video(input_file, output_file, frame_interval)
+    # build_transcript(output_file)
+    build_transcript('./test_lecture_vid.mov')

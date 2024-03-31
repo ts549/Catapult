@@ -29,7 +29,9 @@ def openai_call(prompt, variations):
                                               ])
     return [choice.message.content for choice in response.choices]
 
-def create_quiz(prompt, multiple_choice, true_false, short_answer, variations):
-    string = f"Create a quiz that has {multiple_choice} multiple choice questions, {true_false} true and false questions, and {short_answer} short_answer questions based on this following text"
-    string += prompt
+def create_quiz(prompt, video_prompt, multiple_choice, true_false, short_answer, variations):
+    string = f"Create a quiz that has {multiple_choice} multiple choice questions, {true_false} true and false questions, and {short_answer} short_answer questions.\n"
+    string += f"Here is the audio transcript: {prompt}\n"
+    string += f"Here is the text in the video: {video_prompt}\n"
+    string += f"Use the audio transcript and the text found in the video to create the number of questions defined before"
     return openai_call(string, int(variations))
