@@ -6,7 +6,6 @@ FRAMES_SKIPPED = 120
 
 from google.cloud import vision
 from flask import abort, make_response, jsonify
-from pdf2image import convert_from_path
 import pypdfium2 as pdfium
 import numpy as np
 
