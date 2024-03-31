@@ -20,39 +20,39 @@ export default function HeroTitle() {
             acumentor
           </Title>
         </div>
-        <div className='w-full h-full flex flex-row justify-center items-center overflow-x-hidden'>
+        <div className="w-full h-full flex flex-row justify-center items-center overflow-x-hidden">
           <Container size={700} className={'inner w-[80%] h-[80%]'}>
-              <h1 className={'title'}>
-                <p>Streamline quizzes in an{' '}</p>
-                <Text
-                  component="span"
-                  variant="gradient"
-                  gradient={{ from: '#a2fdd2', to: 'cyan' }}
-                  inherit
-                >
-                  <TypeAnimation
-                    preRenderFirstString={true}
-                    sequence={[
-                      'efficient',
-                      2000,
-                      'automated',
-                      2000,
-                      'adaptable',
-                      2000,
-                    ]}
-                    speed={20}
-                    cursor={false}
-                    repeat={Infinity}
-                  />
-                </Text>{' '}
-                way
-              </h1>
+            <h1 className={'title'}>
+              <p>Streamline quizzes in an </p>
+              <Text
+                component="span"
+                variant="gradient"
+                gradient={{ from: '#a2fdd2', to: 'cyan' }}
+                inherit
+              >
+                <TypeAnimation
+                  preRenderFirstString={true}
+                  sequence={[
+                    'efficient',
+                    2000,
+                    'automated',
+                    2000,
+                    'adaptable',
+                    2000,
+                  ]}
+                  speed={20}
+                  cursor={false}
+                  repeat={Infinity}
+                />
+              </Text>{' '}
+              way
+            </h1>
 
-              <Text className={'description'} color="dimmed">
-                Build fully functional accessible web applications with ease – Mantine
-                includes more than 100 customizable components and hooks to cover you
-                in any situation
-              </Text>
+            <Text className={'description'} color="dimmed">
+              Build fully functional accessible web applications with ease –
+              Mantine includes more than 100 customizable components and hooks
+              to cover you in any situation
+            </Text>
             <Group className={'controls'}>
               <Link href="/home">
                 <Button
@@ -67,7 +67,7 @@ export default function HeroTitle() {
 
               <Button
                 component="a"
-                href="https://github.com/mantinedev/mantine"
+                href="https://github.com/ts549/Catapult"
                 size="xl"
                 variant="default"
                 className={'control'}
@@ -77,7 +77,7 @@ export default function HeroTitle() {
               </Button>
             </Group>
           </Container>
-          <Image src={demo_img} alt="" className='w-[35%] h-[80%]' />
+          <Image src={demo_img} alt="" className="w-[35%] h-[80%]" />
         </div>
       </div>
       <Stats />
