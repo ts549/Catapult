@@ -2,6 +2,7 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Group,
   Input,
@@ -21,7 +22,7 @@ import classes from './ContainedInput.module.css';
 import { ClockHour4 } from 'tabler-icons-react';
 
 function BaseDemo() {
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
   const openRef = useRef(null);
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +36,7 @@ function BaseDemo() {
   const [numMC, setNumMC] = useState('');
   const [numTF, setNumTF] = useState('');
   const [numSA, setNumSA] = useState('');
+  const [numVA, setNumVA] = useState('');
 
   const submitFile = async () => {
     setIsLoading(true);
@@ -152,11 +154,11 @@ function BaseDemo() {
         </Dropzone>
         {file && file?.length > 0 ? (
           <div className="w-full h-auto mt-10 mb-10 flex flex-col justify-center items-center gap-1">
-            <div className="w-[90%] h-[50px] flex flex-row items-center gap-3">
+            {/* <div className="w-[90%] h-[50px] flex flex-row items-center gap-3">
               <Folder size={48} strokeWidth={0.5} color={'black'} />
               <div>Select folder...</div>
-            </div>
-            <div className="w-[90%] h-auto">
+            </div> */}
+            <div className="w-full h-auto">
               <TextInput
                 label="Quiz Name"
                 placeholder="Name"
@@ -166,7 +168,7 @@ function BaseDemo() {
                 }}
               />
             </div>
-            <div className="w-[90%] h-[90px] flex flex-row items-center gap-5">
+            <div className="w-full h-[90px] flex flex-row items-center gap-5">
               <Select
                 comboboxProps={{ withinPortal: true }}
                 data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
@@ -197,7 +199,17 @@ function BaseDemo() {
                   setNumSA(value);
                 }}
               />
-              <div className="w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5">
+              <Select
+                comboboxProps={{ withinPortal: true }}
+                data={['0', '1', '2', '3', '4']}
+                placeholder="Pick one"
+                label="Variations"
+                classNames={classes}
+                onChange={(value) => {
+                  setNumVA(value);
+                }}
+              />
+              {/* <div className="w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5">
                 <ClockHour4 size={32} strokeWidth={1} color={'black'} />~
                 {numMC &&
                   numTF &&
@@ -205,16 +217,11 @@ function BaseDemo() {
                   (parseInt(numMC) + parseInt(numTF) + parseInt(numSA)) *
                     1.5}{' '}
                 mins
-              </div>
+              </div> */}
             </div>
-            <div className="w-[90%] h-[50px] mt-1">
-              <button
-                onClick={submitFile}
-                className="w-full h-full bg-[#4e4e4e] text-white rounded-md"
-              >
-                Generate Questions
-              </button>
-            </div>
+            <Button mt={16} fullWidth onClick={submitFile}>
+              Generate Questions
+            </Button>
           </div>
         ) : (
           <div />
@@ -223,12 +230,12 @@ function BaseDemo() {
         <Flex direction="row" justify="space-between" mt={36} mb={12}>
           <Title order={2}>Quizzes</Title>
 
-          <Input
+          {/* <Input
             placeholder="Search for quizzes"
             rightSection={<IconSearch size={16} />}
             value={value}
             onChange={(e) => setValue(e.currentTarget.value)}
-          />
+          /> */}
         </Flex>
       </div>
 

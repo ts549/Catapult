@@ -47,10 +47,9 @@ function page({ params }) {
 
   return (
     <div className="flex flex-col p-8 h-full w-full">
-      <Flex direction="row" justify="space-between">
-        <Title order={2}>Edit Quiz</Title>
+      <Flex direction="row">
         <Input
-          className="input-right-alight"
+          className="input-large"
           value={title}
           onChange={(e) => setTitle(e.currentTarget.value)}
           style={{ fontWeight: 700, fontSize: '1.25rem' }}
@@ -77,9 +76,9 @@ function page({ params }) {
             </Center>
           </>
         ))}
-        {/* <Center className="w-10 rounded-full aspect-square text-lg border border-black">
+        <Center className="w-10 rounded-full aspect-square text-lg border border-black">
           <IconPlus />
-        </Center> */}
+        </Center>
       </Group>
       <Flex direction="column" gap="xl">
         {questions?.map((question, i) => (
