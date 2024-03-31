@@ -16,11 +16,8 @@ import QuizItem from '../../../components/QuizItem';
 import { useLocalStorage } from '@mantine/hooks';
 import { Select, TextInput } from '@mantine/core';
 import classes from './ContainedInput.module.css';
-<<<<<<< HEAD
 import { ClockHour4 } from 'tabler-icons-react';
 import { motion as m } from "framer-motion"; 
-=======
->>>>>>> f5c64040f160b971b3f45913a725d35e24dc7501
 
 function BaseDemo() {
   // const [value, setValue] = useState('');
