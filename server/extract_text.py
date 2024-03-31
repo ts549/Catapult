@@ -34,18 +34,12 @@ def capture_frames(video_path):
     frame_count = 0
     frame_bytes = []
     cap = cv2.VideoCapture(video_path)
-    W, H = 1080, 560
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, W)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, H)
-    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-    cap.set(cv2.CAP_PROP_FPS, 10)
     status, image = cap.read()
 
     while status: #continue making frames while video is still left
         
         status, image = cap.read()
         if frame_count % FRAMES_SKIPPED == 0:
-            print('d')
             frame_bytes.append(encode_frame(image))     
         frame_count +=1
     cap.release() 
