@@ -6,18 +6,26 @@ import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
 import Stats from '../sections/Stats';
 import Prices from '../sections/Prices';
+import { Title } from '@mantine/core';
+import Image from 'next/image';
 
 export default function HeroTitle() {
   return (
     <div>
       <div className="bg-[#111112] h-screen w-screen items-center justify-center overflow-hidden">
+        <div className="absolute flex flex-row gap-x-2 justify-center items-center ml-2 mt-2">
+          <Image src="/logo.png" alt="logo" width={48} height={48} />
+          <Title className="text-white" order={3}>
+            acumentor
+          </Title>
+        </div>
         <Container size={700} className={'inner w-[80%] h-[80%]'}>
           <h1 className={'title'}>
             Streamline quizzes in an{' '}
             <Text
               component="span"
               variant="gradient"
-              gradient={{ from: 'blue', to: 'cyan' }}
+              gradient={{ from: '#a2fdd2', to: 'cyan' }}
               inherit
             >
               <TypeAnimation
@@ -49,7 +57,7 @@ export default function HeroTitle() {
                 size="xl"
                 className={'control'}
                 variant="gradient"
-                gradient={{ from: 'blue', to: 'cyan' }}
+                gradient={{ from: '#a2fdd2', to: 'cyan' }}
               >
                 Get started
               </Button>

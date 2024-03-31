@@ -6,7 +6,7 @@ function Prices() {
                     <div className="w-auto h-auto text-white text-3xl font-medium">
                         Choose a plan that works for you
                     </div>
-                    <div className="w-auto h-auto text-white text-md text-[#d9dada]">
+                    <div className="w-auto h-auto text-md text-[#d9dada]">
                         Get an individual plan with features that you need, or create a team instead!
                     </div>
                 </div>
