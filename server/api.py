@@ -23,7 +23,7 @@ def upload_file():
         print("DONE SPLITTING")
         transcription = transcribe_audio(audio_path)
         print("DONE TRANSCRIBING")
-        video_transcription = build_transcript(file['path'])
+        video_transcription = build_transcript(file['path'], file['type'])
         questions = create_quiz(transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"], video_transcription)
         print("DONE QUESTIONS")
         parts = file['path'].split('/')

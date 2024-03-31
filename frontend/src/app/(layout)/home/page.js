@@ -42,6 +42,7 @@ function BaseDemo() {
   const submitFile = async () => {
     setIsLoading(true);
     const body = new FormData();
+    body.append('type', 'video');
     body.append('file', file[0]);
     body.append('multiple_choice', numMC);
     body.append('true_false', numTF);
