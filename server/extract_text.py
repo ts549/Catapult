@@ -6,7 +6,7 @@ FRAMES_SKIPPED = 120
 
 from google.cloud import vision
 from flask import abort, make_response, jsonify
-
+from pdf2image import convert_from_path
 
 def detect_text(byte_string):
     detected_text = ""
@@ -55,13 +55,22 @@ def extract_text(existing_text, photo_byte):
         new_frame_text = existing_text
     return new_frame_text 
 
-def build_transcript(video_path):
+def convertPDFtoBYTE(file_path):
+    images = convert_from_path(file_path)
+    image_bytes = []
+    for image in images:
+	    image_bytes.append(encode_frame(image))
+    
+    return image_bytes
+
+def build_transcript(file_path, file_type):
     image_to_text = ""
-    all_image_bytes = capture_frames(video_path)
+    if file_type == "video":
+        all_image_bytes = capture_frames(file_path)
+    elif file_type == "pdf":
+        image_bytes = convertPDFtoBYTE(file_path)
     for image_byte in all_image_bytes:
         image_to_text = extract_text(image_to_text, image_byte)
-
-    print(image_to_text)
     return image_to_text
 
 ''''
