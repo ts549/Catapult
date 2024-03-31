@@ -19,7 +19,16 @@ function Prices() {
               </div>
             </div>
             <div className="relative w-full h-[70%]">
-              <div className="absolute ml-[-50%] mt-[-10%] w-[200%] h-[300%] bg-white rounded-full" />
+              <div className="absolute ml-[-50%] mt-[-10%] w-[200%] h-[300%] bg-white rounded-full flex flex-col items-center pt-6">
+                <div className="font-bold text-3xl">$6.99</div>
+                <div>/ month</div>
+                <div className="font-medium p-1">OR</div>
+                <div className="font-bold text-3xl">$29.99</div>
+                <div>/ year</div>
+                <button className="w-[140px] h-[40px] bg-[#00be74] rounded-md mt-5 text-white">
+                  See Features
+                </button>
+              </div>
             </div>
           </div>
           <div className="w-[23%] h-[85%] bg-[#d9dada] rounded-lg overflow-hidden">
@@ -30,12 +39,14 @@ function Prices() {
             </div>
             <div className="relative w-full h-[70%]">
               <div className="absolute ml-[-50%] mt-[-10%] w-[200%] h-[300%] bg-white rounded-full flex flex-col items-center pt-6">
-                <div className="font-bold text-3xl">$6.99</div>
+                <div className="font-bold text-3xl">$2,499.99</div>
                 <div>/ month</div>
                 <div className="font-medium p-1">OR</div>
-                <div className="font-bold text-3xl">$30</div>
+                <div className="font-bold text-3xl">$25k</div>
                 <div>/ year</div>
-                <button className=""></button>
+                <button className="w-[140px] h-[40px] bg-[#00467c] rounded-md mt-5 text-white">
+                  See Features
+                </button>
               </div>
             </div>
           </div>
@@ -46,7 +57,16 @@ function Prices() {
               </div>
             </div>
             <div className="relative w-full h-[70%]">
-              <div className="absolute ml-[-50%] mt-[-10%] w-[200%] h-[300%] bg-white rounded-full" />
+              <div className="absolute ml-[-50%] mt-[-10%] w-[200%] h-[300%] bg-white rounded-full flex flex-col items-center pt-6">
+                <div className="font-bold text-3xl">$13k</div>
+                <div>/ month</div>
+                <div className="font-medium p-1">OR</div>
+                <div className="font-bold text-3xl">$150k</div>
+                <div>/ year</div>
+                <button className="w-[140px] h-[40px] bg-[#562459] rounded-md mt-5 text-white">
+                  See Features
+                </button>
+              </div>
             </div>
           </div>
         </div>
