@@ -38,6 +38,13 @@ def upload_file():
             id = parts[2]
             data = {'id': id, 'status': 'Success', 'message': 'File saved', "transcription": transcription, "questions": questions}
 
+    elif (file['type'] == 'audio'):
+        transcription = transcribe_audio(file['path'])
+        questions = create_quiz(transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
+        print("DONE QUESTIONS")
+        parts = file['path'].split('/')
+        id = parts[2]
+        data = {'id': id, 'status': 'Success', 'message': 'File saved', "transcription": transcription, "questions": questions}
 
     elif (file['type'] == 'pdf'):
         transcription = build_transcript(file['path'], file['type'])

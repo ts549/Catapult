@@ -52,6 +52,7 @@ def transcribe_audio(input_file):
 UPLOAD_FOLDER = './videos'
 VIDEO_EXTENSIONS = {'mp4', 'mov'}
 PDF_EXTENSIONS = {'pdf'}
+AUDIO_EXTENSIONS = {'mp3', 'wav'}
 
 
 def allowed_file(filename):
@@ -61,6 +62,8 @@ def allowed_file(filename):
           return {"valid": True, "type": 'video'}
        elif extension in PDF_EXTENSIONS:
           return {"valid": True, "type": 'pdf'}
+       elif extension in AUDIO_EXTENSIONS:
+          return {'valid': True, 'type': 'audio'}
     return {'valid': False, 'type': ''}
 
 def save_file(request):
@@ -79,7 +82,7 @@ def save_file(request):
     if file and file_valid['valid']:
         myuuid = str(uuid.uuid4())
         given_filename = secure_filename(file.filename)
-        filename = "video.mp4"
+        filename = "video." + file.filename.rsplit('.', 1)[1].lower()
         
         path = os.path.join(UPLOAD_FOLDER, myuuid)
         
