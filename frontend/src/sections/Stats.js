@@ -52,7 +52,7 @@ function Stats() {
     <div className='w-screen h-screen bg-[#18181c] flex flex-col overflow-hidden gap-10'>
         <div className="w-full h-[25%] mt-[5%] text-white flex flex-col justify-center items-center ml-8 gap-10">
             <div className="mr-[40%] font-medium text-xl overflow-hidden">
-                <div ref={leftSlideRef}>Join more than 100 thousand educators worldwide.</div>
+                <div ref={leftSlideRef}>Join thousands of educators worldwide.</div>
             </div>
             <div className='overflow-hidden'>
                 <div ref={rightSlideRef} className="flex flex-row gap-6 ml-8">
