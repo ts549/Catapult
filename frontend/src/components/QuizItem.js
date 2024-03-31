@@ -1,12 +1,13 @@
-'use client';
 import { Badge, Flex, Group, Text, rem } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import {
   IconDotsVertical,
   IconAlarm,
   IconChevronRight,
 } from '@tabler/icons-react';
+import Link from 'next/link';
 
-const QuizItem = ({ title, questions, minutes }) => {
+const QuizItem = ({ id, title, questions, minutes, lastEdited }) => {
   return (
     <div className="flex flex-col p-4 bg-white rounded-sm min-w-[250px]">
       <Text fw={500} size="xl">
@@ -39,14 +40,37 @@ const QuizItem = ({ title, questions, minutes }) => {
         </Badge>
       </Group>
       <Flex direction="row" justify="space-between">
-        <Text size="xs">Last edited at 10:49 PM</Text>
-        <Group gap={0}>
-          <Text size="xs">Edit</Text>
-          <IconChevronRight size={16} />
-        </Group>
+        <Text size="xs">Last edited at {getTimeFormat(lastEdited)}</Text>
+        <Link href={`/quiz/${id}`}>
+          <Group gap={0}>
+            <Text size="xs">Edit</Text>
+            <IconChevronRight size={16} />
+          </Group>
+        </Link>
       </Flex>
     </div>
   );
 };
 
 export default QuizItem;
+
+const getTimeFormat = (date) => {
+  // Get hours and minutes
+  const newDate = new Date(date);
+
+  var hours = newDate.getHours();
+  var minutes = newDate.getMinutes();
+
+  // Convert hours to 12-hour format and determine AM or PM
+  var meridiem = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // Handle midnight (0 hours) as 12 AM
+
+  // Pad minutes with leading zero if necessary
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+
+  // Concatenate hours, minutes, and meridiem
+  var timeString = hours + ':' + minutes + ' ' + meridiem;
+
+  return timeString;
+};
