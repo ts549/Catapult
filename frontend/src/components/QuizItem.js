@@ -1,11 +1,13 @@
 import { Badge, Flex, Group, Text, rem } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import {
   IconDotsVertical,
   IconAlarm,
   IconChevronRight,
 } from '@tabler/icons-react';
+import Link from 'next/link';
 
-const QuizItem = ({ title, questions, minutes, lastEdited }) => {
+const QuizItem = ({ id, title, questions, minutes, lastEdited }) => {
   return (
     <div className="flex flex-col p-4 bg-white rounded-sm min-w-[250px]">
       <Text fw={500} size="xl">
@@ -39,10 +41,12 @@ const QuizItem = ({ title, questions, minutes, lastEdited }) => {
       </Group>
       <Flex direction="row" justify="space-between">
         <Text size="xs">Last edited at {getTimeFormat(lastEdited)}</Text>
-        <Group gap={0}>
-          <Text size="xs">Edit</Text>
-          <IconChevronRight size={16} />
-        </Group>
+        <Link href={`/quiz/${id}`}>
+          <Group gap={0}>
+            <Text size="xs">Edit</Text>
+            <IconChevronRight size={16} />
+          </Group>
+        </Link>
       </Flex>
     </div>
   );
