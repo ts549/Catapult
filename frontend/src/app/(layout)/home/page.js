@@ -170,7 +170,7 @@ function BaseDemo() {
                 data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
                 placeholder="Pick one"
                 label="Multiple Choice"
-                classNames={classes}
+                classNames={[classes, 'w-full']}
                 onChange={(value) => {
                   setNumMC(value);
                 }}
@@ -180,7 +180,7 @@ function BaseDemo() {
                 data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
                 placeholder="Pick one"
                 label="True/False"
-                classNames={classes}
+                classNames={[classes, 'w-full']}
                 onChange={(value) => {
                   setNumTF(value);
                 }}
@@ -190,7 +190,7 @@ function BaseDemo() {
                 data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
                 placeholder="Pick one"
                 label="Short answer"
-                classNames={classes}
+                classNames={[classes, 'w-full']}
                 onChange={(value) => {
                   setNumSA(value);
                 }}
@@ -200,20 +200,11 @@ function BaseDemo() {
                 data={['0', '1', '2', '3', '4']}
                 placeholder="Pick one"
                 label="Variations"
-                classNames={classes}
+                classNames={[classes, 'w-full']}
                 onChange={(value) => {
                   setNumVA(value);
                 }}
               />
-              {/* <div className="w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5">
-                <ClockHour4 size={32} strokeWidth={1} color={'black'} />~
-                {numMC &&
-                  numTF &&
-                  numSA &&
-                  (parseInt(numMC) + parseInt(numTF) + parseInt(numSA)) *
-                    1.5}{' '}
-                mins
-              </div> */}
             </div>
             <Button mt={16} fullWidth onClick={submitFile}>
               Generate Questions
