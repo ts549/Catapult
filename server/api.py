@@ -18,16 +18,21 @@ def test():
 def upload_file():
     file = save_file(request)
     print("DONE SAVING")
-    audio_path = split_video_audio(file['path'])
-    print("DONE SPLITTING")
-    transcription = transcribe_audio(audio_path)
-    print("DONE TRANSCRIBING")
-    video_transcription = build_transcript(file['path'])
-    parts = file['path'].split('/')
-    id = parts[2]
-    questions = create_quiz(transcription, video_transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
-    print("DONE QUESTIONS")
-    data = {'id': id, 'status': 'Success', 'message': 'File saved', 'video_path': file, "audio_path": audio_path, "transcription": transcription, "questions": questions}
+    if (file['type'] == 'video'):
+        audio_path = split_video_audio(file['path'])
+        print("DONE SPLITTING")
+        transcription = transcribe_audio(audio_path)
+        print("DONE TRANSCRIBING")
+        video_transcription = build_transcript(file['path'])
+        parts = file['path'].split('/')
+        id = parts[2]
+        questions = create_quiz(transcription, video_transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
+        print("DONE QUESTIONS")
+        data = {'id': id, 'status': 'Success', 'message': 'File saved', 'video_path': file, "audio_path": audio_path, "transcription": transcription, "questions": questions}
+    elif (file['type'] == 'pdf'):
+        # NEED TO CALL OCR HERE
+        pass
+
     return make_response(jsonify(data), 200)
 
 
