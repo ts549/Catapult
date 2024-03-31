@@ -1,6 +1,6 @@
 .inner {
   position: relative;
-  padding-top: rem(10%);
+  padding-top: rem(7%);
   padding-bottom: rem(10%);
 
   /* @media (max-width: $mantine-breakpoint-sm) {
@@ -10,7 +10,7 @@
 }
 
 .title {
-  font-size: rem(62px);
+  font-size: rem(48px);
   font-weight: 900;
   line-height: 1.1;
   margin: 0;
@@ -25,7 +25,7 @@
 
 .description {
   margin-top: var(--mantine-spacing-xl);
-  font-size: rem(24px);
+  font-size: rem(18px);
 
   /* @media (max-width: $mantine-breakpoint-sm) {
     font-size: rem(18px);
@@ -33,7 +33,7 @@
 }
 
 .controls {
-  margin-top: calc(var(--mantine-spacing-xl) * 2);
+  margin-top: calc(var(--mantine-spacing-xl));
 
   /* @media (max-width: $mantine-breakpoint-sm) {
     margin-top: var(--mantine-spacing-xl);
@@ -41,7 +41,7 @@
 }
 
 .control {
-  height: rem(54px);
+  height: rem(50px);
   padding-left: rem(38px);
   padding-right: rem(38px);
 
