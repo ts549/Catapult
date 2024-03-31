@@ -106,7 +106,7 @@ function BaseDemo() {
               console.log('accepted files', files);
             }}
             multiple={false}
-            accept={['video/mp4', 'video/*']}
+            accept={['video/mp4', 'video/*', 'application/pdf']}
             activateOnClick={!file}
           >
             <Group

@@ -1,6 +1,15 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import Image from 'next/image';
+import purdue from '../img/purdue_logo.png';
+import uiuc from '../img/illi_logo.png';
+import cap from '../img/cap.png';
+import pencil from '../img/pencil.png';
+import reading from '../img/reading.png';
+import imposter from '../img/imposter.png';
+import book from '../img/book.webp'
+import { Book, Pencil, User, School, Wallpaper, BellSchool } from 'tabler-icons-react';
 
 function Stats() {
     gsap.registerPlugin(ScrollTrigger);
@@ -45,25 +54,32 @@ function Stats() {
                 <div ref={leftSlideRef}>Join more than 100 thousand educators worldwide.</div>
             </div>
             <div className='overflow-hidden'>
-                <div ref={rightSlideRef} className="flex flex-row gap-10 ml-8">
-                    <div className="bg-white w-[100px] h-[100px]" />
-                    <div className="bg-white w-[100px] h-[100px]" />
-                    <div className="bg-white w-[100px] h-[100px]" />
-                    <div className="bg-white w-[100px] h-[100px]" />
-                    <div className="bg-white w-[100px] h-[100px]" />
-                    <div className="bg-white w-[100px] h-[100px]" />
+                <div ref={rightSlideRef} className="flex flex-row gap-6 ml-8">
+                    <Image src={purdue} className="w-[120px] h-[100px]" />
+                    <Image src={purdue} className="w-[120px] h-[100px]" />
+                    <Image src={purdue} className="w-[120px] h-[100px]" />
+                    <Image src={purdue} className="w-[120px] h-[100px]" />
+                    <Image src={purdue} className="w-[120px] h-[100px]" />
+                    <Image src={purdue} className="w-[120px] h-[100px]" />
                 </div>
             </div>
         </div>
         <div ref={fadeRef} className="w-full h-[65%] mb-[5%] text-white flex flex-row justify-center items-center">
             <div className="w-[40%] h-[80%] p-5 flex flex-col justify-center items-center gap-10">
-                <div className="text-5xl text-[#d9dada]">18,000</div>
-                <div className="text-[#d9dada]">Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</div>
+                <div className="text-5xl text-[#d9dada]">Current Users: </div>
+                <div className='flex flex-row justify-center items-center gap-5'>
+                    <User
+                        size={48}
+                        strokeWidth={2}
+                        color={'#FFFFFF'}
+                    />
+                    <div className="text-5xl text-[#d9dada]">1,800</div>
+                </div>
             </div>
             <div className="w-[1px] h-[80%] bg-[#808282]" />
-            <div className="w-[40%] h-[80%] p-10 flex flex-col justify-center items-center gap-10">
-                <div className="text-5xl text-[#d9dada]">87%</div>
-                <div className="text-[#d9dada]">Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</div>
+            <div className="w-[40%] h-[80%] p-10 flex flex-col justify-center items-center gap-8">
+                <div className="text-5xl text-[#d9dada]">95%</div>
+                <div className="text-xl text-[#d9dada]">Of users were satisfied with the results!</div>
             </div>
         </div>
     </div>
