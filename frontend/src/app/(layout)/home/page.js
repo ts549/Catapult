@@ -134,31 +134,24 @@ function BaseDemo() {
       >
         Submit
       </Button>
-      {
-        showDetails ? (
-          <div className='w-full h-[400px] flex flex-col justify-center items-center'>
-            <div className='w-[90%] h-[50px] flex flex-row items-center gap-3'>
-              <Folder
-                size={48}
-                strokeWidth={0.5}
-                color={'black'}
-              />
-              <div>Select folder...</div>
-            </div>
-              <TextInput label="Shipping address" placeholder="15329 Huston 21st" classNames={classes} />
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-            <div>
-
-            </div>
+      {showDetails ? (
+        <div className="w-full h-[400px] flex flex-col justify-center items-center">
+          <div className="w-[90%] h-[50px] flex flex-row items-center gap-3">
+            <Folder size={48} strokeWidth={0.5} color={'black'} />
+            <div>Select folder...</div>
           </div>
-        )
-        : <div />
-      }
+          <TextInput
+            label="Shipping address"
+            placeholder="15329 Huston 21st"
+            classNames={classes}
+          />
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      ) : (
+        <div />
+      )}
 
       <Flex direction="row" justify="space-between" mt={36} mb={12}>
         <Title order={2}>Quizzes</Title>
