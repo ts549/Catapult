@@ -7,7 +7,7 @@ import {
 } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const QuizItem = ({ item }) => {
+const QuizItem = ({ item, darkColor, lightColor }) => {
   return (
     <div className="flex flex-col p-4 bg-white rounded-sm min-w-[250px]">
       <Text fw={500} size="xl">
@@ -19,10 +19,10 @@ const QuizItem = ({ item }) => {
           leftSection={
             <IconDotsVertical style={{ width: rem(12), height: rem(12) }} />
           }
-          color="red"
+          color={darkColor}
           variant="default"
-          bg="#FEEAEA"
-          style={{ border: 1, borderColor: 'red', borderStyle: 'solid' }}
+          bg={lightColor}
+          style={{ border: 1, borderColor: darkColor, borderStyle: 'solid' }}
         >
           {item?.num_questions} Questions
         </Badge>
@@ -33,8 +33,8 @@ const QuizItem = ({ item }) => {
           }
           color="red"
           variant="default"
-          bg="#FEEAEA"
-          style={{ border: 1, borderColor: 'red', borderStyle: 'solid' }}
+          bg={lightColor}
+          style={{ border: 1, borderColor: darkColor, borderStyle: 'solid' }}
         >
           ~{item?.time_prediction} Minutes
         </Badge>

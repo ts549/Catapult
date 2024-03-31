@@ -54,14 +54,16 @@ export default function HeroTitle() {
                 in any situation
               </Text>
             <Group className={'controls'}>
-              <Button
-                size="xl"
-                className={'control'}
-                variant="gradient"
-                gradient={{ from: '#a2fdd2', to: 'cyan' }}
-              >
-                Get started
-              </Button>
+              <Link href="/home">
+                <Button
+                  size="xl"
+                  className={'control'}
+                  variant="gradient"
+                  gradient={{ from: '#a2fdd2', to: 'cyan' }}
+                >
+                  Get started
+                </Button>
+              </Link>
 
               <Button
                 component="a"
