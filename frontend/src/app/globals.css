@@ -10,3 +10,9 @@
 .input-large input {
   font-size: 1.5rem;
 }
+
+.mantine-NavLink-root {
+  &:hover {
+    background-color: #2e2e2e !important;
+  }
+}

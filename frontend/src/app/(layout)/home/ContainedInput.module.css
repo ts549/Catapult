@@ -1,18 +1,20 @@
 .root {
-    position: relative;
+  position: relative;
+  width: 100%;
 }
 
 .input {
-    height: rem(54px);
-    padding-top: rem(18px);
-    border-radius: 10px;
+  height: rem(54px);
+  padding-top: rem(18px);
+  border-radius: 10px;
+  width: 100%;
 }
 
 .label {
-    position: absolute;
-    pointer-events: none;
-    font-size: var(--mantine-font-size-xs);
-    padding-left: var(--mantine-spacing-sm);
-    padding-top: calc(var(--mantine-spacing-sm) / 2);
-    z-index: 1;
+  position: absolute;
+  pointer-events: none;
+  font-size: var(--mantine-font-size-xs);
+  padding-left: var(--mantine-spacing-sm);
+  padding-top: calc(var(--mantine-spacing-sm) / 2);
+  z-index: 1;
 }

@@ -49,12 +49,12 @@ function page({ params }) {
     <div className="flex flex-col p-8 h-full w-full">
       <Flex direction="row">
         <Input
-          className="input-large"
+          className="input-large w-full"
           value={title}
           onChange={(e) => setTitle(e.currentTarget.value)}
           style={{ fontWeight: 700, fontSize: '1.25rem' }}
           variant="unstyled"
-          rightSection={<IconEdit size={16} />}
+          rightSection={<IconEdit size={20} />}
         />
       </Flex>
       <Divider my="md" />
