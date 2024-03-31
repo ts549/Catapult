@@ -1,22 +1,39 @@
+'use client';
 import { Container, Text, Button, Group } from '@mantine/core';
 import { GithubIcon } from '@mantinex/dev-icons';
 import './HeroTitle.css';
+import { TypeAnimation } from 'react-type-animation';
+// Efficient, automated, adaptable
+//
 
 export default function HeroTitle() {
   return (
     <div className="bg-[#1F1F1F] h-screen w-screen items-center justify-center">
       <Container size={700} className={'inner'}>
         <h1 className={'title'}>
-          A{' '}
+          Streamline quizzes in an{' '}
           <Text
             component="span"
             variant="gradient"
             gradient={{ from: 'blue', to: 'cyan' }}
             inherit
           >
-            fully featured
+            <TypeAnimation
+              preRenderFirstString={true}
+              sequence={[
+                'efficient',
+                2000,
+                'automated',
+                2000,
+                'adaptable',
+                2000,
+              ]}
+              speed={20}
+              cursor={false}
+              repeat={Infinity}
+            />
           </Text>{' '}
-          React components and hooks library
+          way
         </h1>
 
         <Text className={'description'} color="dimmed">

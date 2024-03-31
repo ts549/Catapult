@@ -2,25 +2,25 @@
 import {
   Box,
   Button,
-  Divider,
   Flex,
   Group,
-  Input,
   LoadingOverlay,
   Text,
   Title,
   rem,
 } from '@mantine/core';
-import { IconSearch, IconFileUpload, IconVideo } from '@tabler/icons-react';
+import { IconFileUpload, IconVideo } from '@tabler/icons-react';
 import { Dropzone } from '@mantine/dropzone';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import QuizItem from '../../../components/QuizItem';
 import { useLocalStorage } from '@mantine/hooks';
-import { Folder } from 'tabler-icons-react';
 import { Select, TextInput } from '@mantine/core';
 import classes from './ContainedInput.module.css';
+<<<<<<< HEAD
 import { ClockHour4 } from 'tabler-icons-react';
 import { motion as m } from "framer-motion"; 
+=======
+>>>>>>> f5c64040f160b971b3f45913a725d35e24dc7501
 
 function BaseDemo() {
   // const [value, setValue] = useState('');

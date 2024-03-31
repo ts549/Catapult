@@ -1,7 +1,7 @@
 import '@mantine/core/styles.css';
 import '@mantine/dropzone/styles.css';
 
-import Navbar from '@/components/Navbar/Navbar';
+import Navbar from '../../components/Navbar/Navbar';
 import Image from 'next/image';
 
 export const metadata = {
