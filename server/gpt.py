@@ -1,8 +1,6 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from flask import jsonify
-import pickle
 load_dotenv()
 
 client = OpenAI()

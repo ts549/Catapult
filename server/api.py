@@ -1,13 +1,8 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, jsonify, make_response 
-from werkzeug.exceptions import BadRequest
+from flask import Flask, request, jsonify, make_response 
 from video import split_video_audio, transcribe_audio, save_file
 from gpt import create_quiz
-import sys
 from flask_cors import CORS
-import requests
-
-
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
