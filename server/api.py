@@ -28,9 +28,9 @@ def upload_file():
     print("DONE TRANSCRIBING")
     parts = file['path'].split('/')
     id = parts[2]
-    questions = create_quiz(request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
+    questions = create_quiz(transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
     print("DONE QUESTIONS")
-    data = {'id': id, 'status': 'Success', 'message': 'File saved', 'video_path': file_path, "audio_path": audio_path, "transcription": transcription, "questions": questions}
+    data = {'id': id, 'status': 'Success', 'message': 'File saved', 'video_path': file, "audio_path": audio_path, "transcription": transcription, "questions": questions}
     return make_response(jsonify(data), 200)
 
 
