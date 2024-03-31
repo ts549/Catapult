@@ -13,6 +13,7 @@ import {
 import { useLocalStorage } from '@mantine/hooks';
 import {
   IconCheck,
+  IconChevronDown,
   IconEdit,
   IconLineDashed,
   IconMenu,
@@ -20,9 +21,12 @@ import {
   IconPlus,
   IconX,
 } from '@tabler/icons-react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 function page({ params }) {
+  const router = useRouter();
+  const [folderName, setFolderName] = useState('');
   const [user, setUser] = useLocalStorage({
     key: 'user-data',
     serialize: JSON.stringify,
@@ -44,6 +48,28 @@ function page({ params }) {
     if (!user) return;
     setTitle(data?.title);
   }, [user]);
+
+  const publish = () => {
+    const keys = Object.keys(user);
+
+    // Search for the quiz in the drafts
+    for (let i = 0; i < keys?.length; i++) {
+      const quizzes = user[keys[i]];
+      const [filtered] = quizzes.filter((q) => q?.id === params?.id);
+
+      if (filtered) {
+        const body = { ...user };
+        body[keys[i]] = quizzes.filter((q) => q?.id !== params?.id);
+        body[folderName] = [...user[folderName], filtered];
+        setUser(body);
+        router.push('/home');
+        return;
+      }
+    }
+    // If the quiz is not found
+
+    // setUser({});
+  };
 
   return (
     <div className="flex flex-col p-8 h-full w-full">
@@ -85,8 +111,36 @@ function page({ params }) {
           <Question question={question} index={i} />
         ))}
       </Flex>
-      <Flex direction="row" justify="center" py={40}>
-        <Button size="md">Save Changes</Button>
+
+      <Flex
+        direction="column"
+        justify="center"
+        py={40}
+        maw={300}
+        miw={300}
+        gap="md"
+        style={{ margin: '0 auto' }}
+      >
+        <Input
+          component="select"
+          rightSection={<IconChevronDown size={14} stroke={1.5} />}
+          pointer
+          mt="md"
+          value={folderName}
+          onChange={(e) => setFolderName(e.currentTarget.value)}
+        >
+          <option value="" disabled selected>
+            Select a folder to publish to
+          </option>
+          {user &&
+            Object.keys(user)
+              ?.filter((f) => f !== 'drafts')
+              ?.sort((a, b) => a.localeCompare(b))
+              ?.map((folder) => <option value={folder}>{folder}</option>)}
+        </Input>
+        <Button size="md" onClick={publish}>
+          Publish
+        </Button>
       </Flex>
     </div>
   );
