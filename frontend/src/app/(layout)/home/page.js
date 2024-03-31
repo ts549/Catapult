@@ -277,8 +277,12 @@ function BaseDemo() {
           w="100%"
           p="lg"
           href="/"
-          bg="#FEEAEA"
-          style={{ borderLeft: 4, borderColor: 'red', borderStyle: 'solid' }}
+          bg="#D3EFFC"
+          style={{
+            borderLeft: 4,
+            borderColor: '#0B99FF',
+            borderStyle: 'solid',
+          }}
         >
           <Title order={3}>Drafts</Title>
           <Flex mt={12} direction="row" gap="lg" wrap={'wrap'}>
@@ -286,8 +290,8 @@ function BaseDemo() {
               <Fragment key={draft.id}>
                 <QuizItem
                   item={draft}
-                  lightColor={'#FEEAEA'}
-                  darkColor={'#FF0000'}
+                  lightColor={'#D3EFFC'}
+                  darkColor={'#0B99FF'}
                 />
               </Fragment>
             ))}
@@ -304,10 +308,10 @@ function BaseDemo() {
                 w="100%"
                 p="lg"
                 href="/"
-                bg="#D3EFFC"
+                bg="#EDFBE7"
                 style={{
                   borderLeft: 4,
-                  borderColor: '#0B99FF',
+                  borderColor: '#B6EF9E',
                   borderStyle: 'solid',
                 }}
               >
@@ -317,8 +321,8 @@ function BaseDemo() {
                     <Fragment key={draft.id}>
                       <QuizItem
                         item={draft}
-                        lightColor={'#D3EFFC'}
-                        darkColor={'#0B99FF'}
+                        lightColor={'#B6EF9E'}
+                        darkColor={'#EDFBE7'}
                       />
                     </Fragment>
                   ))}
