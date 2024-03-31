@@ -3,13 +3,14 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import purdue from '../img/purdue_logo.png';
-import uiuc from '../img/illi_logo.png';
-import cap from '../img/cap.png';
-import pencil from '../img/pencil.png';
-import reading from '../img/reading.png';
-import imposter from '../img/imposter.png';
+import stats_logo_1 from'../img/stats_logo_1.png';
+import stats_logo_2 from'../img/stats_logo_2.png';
+import stats_logo_3 from'../img/stats_logo_3.png';
+import stats_logo_4 from'../img/stats_logo_4.png';
+import stats_logo_5 from'../img/stats_logo_5.png';
 import book from '../img/book.webp'
-import { Book, Pencil, User, School, Wallpaper, BellSchool } from 'tabler-icons-react';
+import { User } from 'tabler-icons-react';
+
 
 function Stats() {
     gsap.registerPlugin(ScrollTrigger);
@@ -21,7 +22,7 @@ function Stats() {
         var Elem = leftSlideRef.current;
         gsap.fromTo(Elem, {translateX: -500}, {translateX: 0, duration: 1, scrollTrigger: {
             trigger: Elem,
-            start: "top-=350 top",
+            start: "top-=330 top",
             toggleActions: "play none reverse none",
             end: "bottom-=500 bottom"
         }});
@@ -31,7 +32,7 @@ function Stats() {
         var Elem = rightSlideRef.current;
         gsap.fromTo(Elem, {translateX: 1000}, {translateX: 0, duration: 1, scrollTrigger: {
             trigger: Elem,
-            start: "top-=390 top",
+            start: "top-=370 top",
             toggleActions: "play none reverse none",
             end: "bottom-=200 bottom"
         }});
@@ -41,7 +42,7 @@ function Stats() {
         var Elem = fadeRef.current;
         gsap.fromTo(Elem, {opacity: 0}, {opacity: 1, duration: 1, scrollTrigger: {
             trigger: Elem,
-            start: "top-=520 top",
+            start: "top-=500 top",
             toggleActions: "play none reverse none",
             end: "bottom-=200 bottom"
         }});
@@ -49,18 +50,18 @@ function Stats() {
 
   return (
     <div className='w-screen h-screen bg-[#18181c] flex flex-col overflow-hidden gap-10'>
-        <div className="w-full h-[25%] mt-[5%] text-white flex flex-col justify-center items-center ml-8 gap-5">
-            <div className="mr-[40%] overflow-hidden">
+        <div className="w-full h-[25%] mt-[5%] text-white flex flex-col justify-center items-center ml-8 gap-10">
+            <div className="mr-[40%] font-medium text-xl overflow-hidden">
                 <div ref={leftSlideRef}>Join more than 100 thousand educators worldwide.</div>
             </div>
             <div className='overflow-hidden'>
                 <div ref={rightSlideRef} className="flex flex-row gap-6 ml-8">
-                    <Image src={purdue} className="w-[120px] h-[100px]" />
-                    <Image src={purdue} className="w-[120px] h-[100px]" />
-                    <Image src={purdue} className="w-[120px] h-[100px]" />
-                    <Image src={purdue} className="w-[120px] h-[100px]" />
-                    <Image src={purdue} className="w-[120px] h-[100px]" />
-                    <Image src={purdue} className="w-[120px] h-[100px]" />
+                    <Image src={stats_logo_1} className="w-[120px] h-[100px]" />
+                    <Image src={stats_logo_2} className="w-[120px] h-[100px]" />
+                    <Image src={stats_logo_3} className="w-[120px] h-[100px]" />
+                    <Image src={stats_logo_4} className="w-[120px] h-[100px]" />
+                    <Image src={stats_logo_5} className="w-[120px] h-[100px]" />
+                    <Image src={book} className="w-[120px] h-[100px]" />
                 </div>
             </div>
         </div>

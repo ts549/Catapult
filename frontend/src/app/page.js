@@ -23,7 +23,7 @@ export default function HeroTitle() {
         <div className='w-full h-full flex flex-row justify-center items-center overflow-x-hidden'>
           <Container size={700} className={'inner w-[80%] h-[80%]'}>
               <h1 className={'title'}>
-                Streamline quizzes in an{' '}
+                <p>Streamline quizzes in an{' '}</p>
                 <Text
                   component="span"
                   variant="gradient"
