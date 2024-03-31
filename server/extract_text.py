@@ -7,6 +7,9 @@ FRAMES_SKIPPED = 120
 from google.cloud import vision
 from flask import abort, make_response, jsonify
 from pdf2image import convert_from_path
+import pypdfium2 as pdfium
+import numpy as np
+
 
 def detect_text(byte_string):
     detected_text = ""
@@ -30,7 +33,6 @@ def encode_frame(frame):
 
 
 def capture_frames(video_path):
-    print(os.getcwd())
     frame_count = 0
     frame_bytes = []
     cap = cv2.VideoCapture(video_path)
@@ -56,18 +58,25 @@ def extract_text(existing_text, photo_byte):
     return new_frame_text 
 
 def convertPDFtoBYTE(file_path):
-    images = convert_from_path(file_path)
+    pdf = pdfium.PdfDocument(file_path)
+    n_pages = len(pdf)
     image_bytes = []
-    for image in images:
+    for page_number in range(n_pages):
+        
+        page = pdf.get_page(page_number)
+        image = page.render(scale = 300/72).to_pil()
+        image = np.array(image)
+        
         image_bytes.append(encode_frame(image))
     return image_bytes
 
 def build_transcript(file_path, file_type):
     image_to_text = ""
+    all_image_bytes=[]
     if file_type == "video":
         all_image_bytes = capture_frames(file_path)
     elif file_type == "pdf":
-        image_bytes = convertPDFtoBYTE(file_path)
+        all_image_bytes = convertPDFtoBYTE(file_path)
     for image_byte in all_image_bytes:
         image_to_text = extract_text(image_to_text, image_byte)
     return image_to_text
@@ -80,12 +89,17 @@ if new text is in image_to_text --> dont add it to the new string
 return large string
 '''
 
+
+
+
+
+
 if __name__ == "__main__":
     # Example usage
-    # input_file = './test_lecture_vid.mov'
+    #input_file = './ocr/test_lecture_vid.mov'
     # output_file = './processed_video.mov'
     # frame_interval = 60  # Select every 5th frame for processing
 
     # process_video(input_file, output_file, frame_interval)
-    # build_transcript(output_file)
-    build_transcript('./test_lecture_vid.mov')
+    #build_transcript(input_file, "video")
+    build_transcript('C:\\Users\\ruthf\\OneDrive - purdue.edu\\Documents\\ECE 2k2\\syllabus.pdf', "pdf")
