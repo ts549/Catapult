@@ -59,8 +59,7 @@ def convertPDFtoBYTE(file_path):
     images = convert_from_path(file_path)
     image_bytes = []
     for image in images:
-	    image_bytes.append(encode_frame(image))
-    
+        image_bytes.append(encode_frame(image))
     return image_bytes
 
 def build_transcript(file_path, file_type):
