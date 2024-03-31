@@ -51,7 +51,7 @@ def transcribe_audio(input_file):
 
 UPLOAD_FOLDER = './videos'
 VIDEO_EXTENSIONS = {'mp4', 'mov'}
-PDF_EXTENSIONS = {'.pdf'}
+PDF_EXTENSIONS = {'pdf'}
 
 
 def allowed_file(filename):
@@ -92,4 +92,5 @@ def save_file(request):
         file.save(file_path)
 
         return {"path": file_path, "name": given_filename, "type": file_valid['type']}
+    print(file_valid)
     abort(make_response(jsonify(message="Invalid file type"), 400))
