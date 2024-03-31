@@ -7,11 +7,11 @@ import {
 } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const QuizItem = ({ id, title, questions, minutes, lastEdited }) => {
+const QuizItem = ({ item }) => {
   return (
     <div className="flex flex-col p-4 bg-white rounded-sm min-w-[250px]">
       <Text fw={500} size="xl">
-        {title}
+        {item?.title}
       </Text>
 
       <Group gap="sm" mt={10} mb={120}>
@@ -24,7 +24,7 @@ const QuizItem = ({ id, title, questions, minutes, lastEdited }) => {
           bg="#FEEAEA"
           style={{ border: 1, borderColor: 'red', borderStyle: 'solid' }}
         >
-          {questions} Questions
+          {item?.num_questions} Questions
         </Badge>
 
         <Badge
@@ -36,12 +36,12 @@ const QuizItem = ({ id, title, questions, minutes, lastEdited }) => {
           bg="#FEEAEA"
           style={{ border: 1, borderColor: 'red', borderStyle: 'solid' }}
         >
-          ~{minutes} Minutes
+          ~{item?.time_prediction} Minutes
         </Badge>
       </Group>
       <Flex direction="row" justify="space-between">
-        <Text size="xs">Last edited at {getTimeFormat(lastEdited)}</Text>
-        <Link href={`/quiz/${id}`}>
+        <Text size="xs">Last edited at {getTimeFormat(item?.lastEdited)}</Text>
+        <Link href={`/quiz/${item?.id}`}>
           <Group gap={0}>
             <Text size="xs">Edit</Text>
             <IconChevronRight size={16} />

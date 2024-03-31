@@ -7,6 +7,7 @@ import {
   Group,
   Input,
   Text,
+  Textarea,
   Title,
 } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
@@ -30,17 +31,18 @@ function page({ params }) {
 
   const data = user?.drafts.find((draft) => draft.id === params.id);
 
-  const [title, setTitle] = useState(data?.file_name);
+  const [title, setTitle] = useState(data?.title);
+  const [variation, setVariation] = useState(0);
 
-  const questions = JSON.parse(
-    '{"questions":[{"question":"What is the capital of France?","choices":["Paris","London","Berlin","Madrid"],"answer":"Paris","question_type":"MULTIPLE_CHOICE"},{"question":"The sun rises in the west. (True/False)","answer":"False","question_type":"TRUE_FALSE"},{"question":"What is the largest planet in our solar system?","answer":"Jupiter","question_type":"SHORT_ANSWER"}]}'
-  ).questions;
+  // const questions = JSON.parse(
+  //   '{"questions":[{"question":"What is the capital of France?","choices":["Paris","London","Berlin","Madrid"],"answer":"Paris","question_type":"MULTIPLE_CHOICE"},{"question":"The sun rises in the west. (True/False)","answer":"False","question_type":"TRUE_FALSE"},{"question":"What is the largest planet in our solar system?","answer":"Jupiter","question_type":"SHORT_ANSWER"}]}'
+  // ).questions;
 
-  console.log(questions);
+  const questions = data?.variations[variation]?.questions;
 
   useEffect(() => {
     if (!user) return;
-    setTitle(data?.file_name);
+    setTitle(data?.title);
   }, [user]);
 
   return (
@@ -61,18 +63,23 @@ function page({ params }) {
         <Text fw={500} size="xl">
           Variations
         </Text>
-        <Center
-          className="w-10 rounded-full aspect-square text-lg text-white"
-          bg="black"
-        >
-          1
-        </Center>
-        <Center className="w-10 rounded-full aspect-square text-lg border border-black">
-          2
-        </Center>
-        <Center className="w-10 rounded-full aspect-square text-lg border border-black">
+        {data?.variations?.map((_, i) => (
+          <>
+            <Center
+              className={`w-10 rounded-full aspect-square text-lg hover:cursor-pointer ${
+                variation === i
+                  ? 'bg-black text-white'
+                  : 'border border-black bg-white text-black'
+              }`}
+              onClick={() => setVariation(i)}
+            >
+              {i + 1}
+            </Center>
+          </>
+        ))}
+        {/* <Center className="w-10 rounded-full aspect-square text-lg border border-black">
           <IconPlus />
-        </Center>
+        </Center> */}
       </Group>
       <Flex direction="column" gap="xl">
         {questions?.map((question, i) => (
@@ -130,14 +137,14 @@ const Question = ({ question, index }) => {
         {choices === null && (
           <Flex mt={20}>
             <Center
-              className={`h-[80%] aspect-square rounded-full bg-[#D9D9D9]`}
+              className={`h-[28.8px] w-[28.8px] aspect-square rounded-full bg-[#D9D9D9]`}
               mr={20}
             >
               <IconLineDashed size={16} />
             </Center>
-            <Input
+            <Textarea
               className="w-full"
-              value={'Free response'}
+              value={question?.answer}
               disabled
               radius={0}
             />
