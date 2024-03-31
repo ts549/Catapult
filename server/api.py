@@ -19,7 +19,7 @@ def upload_file():
     file = save_file(request)
     print("DONE SAVING")
     if (file['type'] == 'video'):
-        video_var = True
+        video_var = False
         audio_path = split_video_audio(file['path'])
         print("DONE SPLITTING")
         transcription = transcribe_audio(audio_path)

@@ -38,10 +38,6 @@ function page({ params }) {
   const [title, setTitle] = useState(data?.title);
   const [variation, setVariation] = useState(0);
 
-  // const questions = JSON.parse(
-  //   '{"questions":[{"question":"What is the capital of France?","choices":["Paris","London","Berlin","Madrid"],"answer":"Paris","question_type":"MULTIPLE_CHOICE"},{"question":"The sun rises in the west. (True/False)","answer":"False","question_type":"TRUE_FALSE"},{"question":"What is the largest planet in our solar system?","answer":"Jupiter","question_type":"SHORT_ANSWER"}]}'
-  // ).questions;
-
   const questions = data?.variations[variation]?.questions;
 
   useEffect(() => {
@@ -66,9 +62,6 @@ function page({ params }) {
         return;
       }
     }
-    // If the quiz is not found
-
-    // setUser({});
   };
 
   return (

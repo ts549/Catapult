@@ -19,8 +19,10 @@ import { useLocalStorage } from '@mantine/hooks';
 import { Select, TextInput } from '@mantine/core';
 import classes from './ContainedInput.module.css';
 import { useDisclosure } from '@mantine/hooks';
+import { useRouter } from 'next/navigation';
 
 function BaseDemo() {
+  const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
 
   const openRef = useRef(null);
@@ -42,11 +44,6 @@ function BaseDemo() {
   const submitFile = async () => {
     setIsLoading(true);
     const body = new FormData();
-    if (file[0]?.type === 'application/pdf') {
-      body.append('type', 'pdf');
-    } else {
-      body.append('type', 'video');
-    }
     body.append('file', file[0]);
     body.append('multiple_choice', numMC);
     body.append('true_false', numTF);
@@ -83,6 +80,7 @@ function BaseDemo() {
     setNumTF('');
     setNumSA('');
     setIsLoading(false);
+    window.open(window.location.origin + '/quiz/' + res?.id, '_blank');
   };
 
   const createFolder = () => {
@@ -111,7 +109,7 @@ function BaseDemo() {
               console.log('accepted files', files);
             }}
             multiple={false}
-            accept={['video/mp4', 'video/*', 'application/pdf']}
+            accept={['video/mp4', 'video/*', 'application/pdf', 'audio/*']}
             activateOnClick={!file}
           >
             <Group
