@@ -1,5 +1,6 @@
 'use client';
 import {
+  Button,
   Center,
   Divider,
   Flex,
@@ -12,6 +13,7 @@ import { useLocalStorage } from '@mantine/hooks';
 import {
   IconCheck,
   IconEdit,
+  IconLineDashed,
   IconMenu,
   IconMenu2,
   IconPlus,
@@ -55,39 +57,54 @@ function page({ params }) {
         />
       </Flex>
       <Divider my="md" />
-      <Group gap="xl" mb={75}>
+      <Group gap="xl" mb={45}>
         <Text fw={500} size="xl">
           Variations
         </Text>
         <Center
-          className="w-12 rounded-full aspect-square text-lg text-white"
+          className="w-10 rounded-full aspect-square text-lg text-white"
           bg="black"
         >
           1
         </Center>
-        <Center className="w-12 rounded-full aspect-square text-lg border border-black">
+        <Center className="w-10 rounded-full aspect-square text-lg border border-black">
           2
         </Center>
-        <Center className="w-12 rounded-full aspect-square text-lg border border-black">
+        <Center className="w-10 rounded-full aspect-square text-lg border border-black">
           <IconPlus />
         </Center>
       </Group>
-      {questions?.map((question) => (
-        <Question question={question} />
-      ))}
+      <Flex direction="column" gap="xl">
+        {questions?.map((question, i) => (
+          <Question question={question} index={i} />
+        ))}
+      </Flex>
+      <Flex direction="row" justify="center" py={40}>
+        <Button size="md">Save Changes</Button>
+      </Flex>
     </div>
   );
 }
 
 export default page;
 
-const Question = ({ question }) => {
+const Question = ({ question, index }) => {
+  let choices = null;
+
+  if (question?.question_type === 'MULTIPLE_CHOICE') {
+    choices = question.choices;
+  } else if (question?.question_type === 'TRUE_FALSE') {
+    choices = ['True', 'False'];
+  }
+
   return (
     <Flex direction="row" gap="xl">
       <IconMenu2 />
       <Flex direction="column" className="w-full">
-        <Text>{question.question}</Text>
-        {question.choices?.map((choice) => (
+        <Text>
+          {index + 1}. {question.question}
+        </Text>
+        {choices?.map((choice) => (
           <Flex mt={20}>
             <Center
               className={`h-[80%] aspect-square rounded-full ${
@@ -109,6 +126,23 @@ const Question = ({ question }) => {
             />
           </Flex>
         ))}
+
+        {choices === null && (
+          <Flex mt={20}>
+            <Center
+              className={`h-[80%] aspect-square rounded-full bg-[#D9D9D9]`}
+              mr={20}
+            >
+              <IconLineDashed size={16} />
+            </Center>
+            <Input
+              className="w-full"
+              value={'Free response'}
+              disabled
+              radius={0}
+            />
+          </Flex>
+        )}
       </Flex>
     </Flex>
   );
