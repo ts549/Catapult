@@ -3,6 +3,7 @@ import { Container, Text, Button, Group } from '@mantine/core';
 import { GithubIcon } from '@mantinex/dev-icons';
 import './HeroTitle.css';
 import { TypeAnimation } from 'react-type-animation';
+import Link from 'next/link';
 // Efficient, automated, adaptable
 //
 
@@ -43,25 +44,16 @@ export default function HeroTitle() {
         </Text>
 
         <Group className={'controls'}>
-          <Button
-            size="xl"
-            className={'control'}
-            variant="gradient"
-            gradient={{ from: 'blue', to: 'cyan' }}
-          >
-            Get started
-          </Button>
-
-          <Button
-            component="a"
-            href="https://github.com/mantinedev/mantine"
-            size="xl"
-            variant="default"
-            className={'control'}
-            leftSection={<GithubIcon size={20} />}
-          >
-            GitHub
-          </Button>
+          <Link href="/home">
+            <Button
+              size="xl"
+              className={'control'}
+              variant="gradient"
+              gradient={{ from: 'blue', to: 'cyan' }}
+            >
+              Get started
+            </Button>
+          </Link>
         </Group>
       </Container>
     </div>
