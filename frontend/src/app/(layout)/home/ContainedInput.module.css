@@ -5,6 +5,7 @@
 .input {
     height: rem(54px);
     padding-top: rem(18px);
+    border-radius: 10px;
 }
 
 .label {

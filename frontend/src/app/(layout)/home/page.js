@@ -17,6 +17,7 @@ import { useLocalStorage } from '@mantine/hooks';
 import { Folder } from 'tabler-icons-react';
 import { Select, TextInput } from '@mantine/core';
 import classes from './ContainedInput.module.css';
+import { ClockHour4 } from 'tabler-icons-react';
 
 function BaseDemo() {
   const [value, setValue] = useState('');
@@ -55,8 +56,6 @@ function BaseDemo() {
     // console.log(data);
     setIsLoading(false);
     setFile(null);
-
-    setShowDetails(true);
   };
 
   return (
@@ -120,23 +119,18 @@ function BaseDemo() {
                   {file[0]?.name}
                 </Group>
               ))}
-              <Button style={{ pointerEvents: 'all' }} onClick={submitFile}>
-                Sumbit
+              <Button style={{ pointerEvents: 'all' }} onClick={() => {
+                setShowDetails(true);
+              }}>
+                Submit
               </Button>
             </>
           )}
         </Group>
       </Dropzone>
-
-      <Button
-        style={{ zIndex: 10000, pointerEvents: 'all' }}
-        onClick={submitFile}
-      >
-        Submit
-      </Button>
       {
         showDetails ? (
-          <div className='w-full h-[400px] flex flex-col justify-center items-center'>
+          <div className='w-full h-auto mt-10 flex flex-col justify-center items-center gap-1'>
             <div className='w-[90%] h-[50px] flex flex-row items-center gap-3'>
               <Folder
                 size={48}
@@ -145,15 +139,47 @@ function BaseDemo() {
               />
               <div>Select folder...</div>
             </div>
-              <TextInput label="Shipping address" placeholder="15329 Huston 21st" classNames={classes} />
-            <div>
-
+            <div className='w-[90%] h-auto'>
+              <TextInput label="Quiz Name" placeholder="Name" classNames={classes} />
             </div>
-            <div>
-
+            <div className='w-[90%] h-[90px] flex flex-row items-center gap-5'>
+              <Select
+                comboboxProps={{ withinPortal: true }}
+                data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+                placeholder="Pick one"
+                label="Multiple Choice"
+                classNames={classes}
+              />
+              <Select
+                comboboxProps={{ withinPortal: true }}
+                data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+                placeholder="Pick one"
+                label="True/False"
+                classNames={classes}
+              />
+              <Select
+                comboboxProps={{ withinPortal: true }}
+                data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+                placeholder="Pick one"
+                label="Short answer"
+                classNames={classes}
+              />
+              <div className='w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5'>
+                <ClockHour4
+                  size={32}
+                  strokeWidth={1}
+                  color={'black'}
+                />
+                ~15 mins
+              </div>
             </div>
-            <div>
-
+            <div className='w-[90%] h-[50px] mt-1'>
+              <button
+              onClick={submitFile}
+              className='w-full h-full bg-[#4e4e4e] text-white rounded-md'
+              >
+                Generate Questions
+              </button>
             </div>
           </div>
         )
