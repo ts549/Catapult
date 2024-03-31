@@ -22,7 +22,7 @@ function Prices() {
                         </div>
                     </div>
                     <div className="w-[23%] h-[85%] bg-[#d9dada] rounded-lg overflow-hidden">
-                        <div className="relative w-full h-[30%]">
+                        <div className="relative w-full h-[30%] overflow-hidden">
                             <div className="absolute w-full h-[1000%] bg-[#00467c] text-white flex justify-center pt-5 font-medium">
                                 Medium Institution
                             </div>
