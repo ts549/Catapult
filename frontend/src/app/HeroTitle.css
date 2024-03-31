@@ -1,7 +1,7 @@
 .inner {
   position: relative;
-  padding-top: rem(200px);
-  padding-bottom: rem(120px);
+  padding-top: rem(10%);
+  padding-bottom: rem(10%);
 
   /* @media (max-width: $mantine-breakpoint-sm) {
     padding-bottom: rem(80px);
