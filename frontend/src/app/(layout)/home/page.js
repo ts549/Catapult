@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import { IconSearch, IconFileUpload, IconVideo } from '@tabler/icons-react';
 import { Dropzone } from '@mantine/dropzone';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import QuizItem from '../../../components/QuizItem';
 import { useLocalStorage } from '@mantine/hooks';
 import { Folder } from 'tabler-icons-react';
@@ -57,6 +57,12 @@ function BaseDemo() {
     setIsLoading(false);
     setFile(null);
   };
+
+  useEffect(() => {
+    if (file?.length > 0) {
+      setShowDetails(true);
+    }
+  }, [file]);
 
   return (
     <div className="px-8 py-4 w-full">
@@ -119,30 +125,33 @@ function BaseDemo() {
                   {file[0]?.name}
                 </Group>
               ))}
-              <Button style={{ pointerEvents: 'all' }} onClick={() => {
-                setShowDetails(true);
-              }}>
+              <Button
+                style={{ pointerEvents: 'all' }}
+                onClick={() => {
+                  setShowDetails(true);
+                }}
+              >
                 Submit
               </Button>
             </>
           )}
         </Group>
       </Dropzone>
-      {
-        showDetails ? (
-          <div className='w-full h-auto mt-10 flex flex-col justify-center items-center gap-1'>
-            <div className='w-[90%] h-[50px] flex flex-row items-center gap-3'>
-              <Folder
-                size={48}
-                strokeWidth={0.5}
-                color={'black'}
-              />
+      {showDetails ? (
+        <>
+          <div className="w-full h-auto mt-10 flex flex-col justify-center items-center gap-1">
+            <div className="w-[90%] h-[50px] flex flex-row items-center gap-3">
+              <Folder size={48} strokeWidth={0.5} color={'black'} />
               <div>Select folder...</div>
             </div>
-            <div className='w-[90%] h-auto'>
-              <TextInput label="Quiz Name" placeholder="Name" classNames={classes} />
+            <div className="w-[90%] h-auto">
+              <TextInput
+                label="Quiz Name"
+                placeholder="Name"
+                classNames={classes}
+              />
             </div>
-            <div className='w-[90%] h-[90px] flex flex-row items-center gap-5'>
+            <div className="w-[90%] h-[90px] flex flex-row items-center gap-5">
               <Select
                 comboboxProps={{ withinPortal: true }}
                 data={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
@@ -164,19 +173,15 @@ function BaseDemo() {
                 label="Short answer"
                 classNames={classes}
               />
-              <div className='w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5'>
-                <ClockHour4
-                  size={32}
-                  strokeWidth={1}
-                  color={'black'}
-                />
+              <div className="w-[230px] h-[50px] bg-[#adadad] right-0 m-auto gap-2 rounded-full items-center justify-center flex ml-5">
+                <ClockHour4 size={32} strokeWidth={1} color={'black'} />
                 ~15 mins
               </div>
             </div>
-            <div className='w-[90%] h-[50px] mt-1'>
+            <div className="w-[90%] h-[50px] mt-1">
               <button
-              onClick={submitFile}
-              className='w-full h-full bg-[#4e4e4e] text-white rounded-md'
+                onClick={submitFile}
+                className="w-full h-full bg-[#4e4e4e] text-white rounded-md"
               >
                 Generate Questions
               </button>
@@ -190,7 +195,7 @@ function BaseDemo() {
           <div></div>
           <div></div>
           <div></div>
-        </div>
+        </>
       ) : (
         <div />
       )}
