@@ -1,0 +1,496 @@
+{
+  "drafts": [
+    {
+      "id": "acd53620-2ac6-4968-8d89-d07c7f0238d5",
+      "title": "CS182 - Week 9 Quiz",
+      "variations": [
+        {
+          "questions": [
+            {
+              "question": "What is the purpose of a server in web development?",
+              "choices": [
+                "To write code",
+                "To request web pages",
+                "To serve web pages to client computers",
+                "To design web pages"
+              ],
+              "answer": "To serve web pages to client computers",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: All computers have an IP address.",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "What does IP address stand for?",
+              "answer": "Internet Protocol address",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What does Web Development entail?",
+              "choices": [
+                "Creating and maintaining websites",
+                "Developing mobile apps",
+                "Managing social media accounts",
+                "Designing logos"
+              ],
+              "answer": "Creating and maintaining websites",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: Web Development can be categorized into front-end and back-end development.",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "What is a domain name in relation to a server's IP address?",
+              "answer": "It corresponds to the server's IP address",
+              "question_type": "SHORT_ANSWER"
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "question": "What serves a web page whenever a client computer requests it?",
+              "choices": ["IP address", "Server", "Domain name", "Client"],
+              "answer": "Server",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What is an IP address likened to in the audio transcript?",
+              "choices": [
+                "Mailing address for computers",
+                "Server computer",
+                "Domain name",
+                "Client"
+              ],
+              "answer": "Mailing address for computers",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What is web development?",
+              "answer": "Web development is the process of creating and maintaining websites and web applications.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Is an IP address likened to a mailing address for computers in the audio transcript? (True/False)",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "Can a server have a domain name that corresponds to its IP address? (True/False)",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "How can building a website be categorized?",
+              "choices": [
+                "Front end and back end development",
+                "Web assembly coding",
+                "Computer networking",
+                "Database management"
+              ],
+              "answer": "Front end and back end development",
+              "question_type": "MULTIPLE_CHOICE"
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "question": "What is the purpose of an IP address in the context of serving web pages?",
+              "choices": [
+                "To define the layout of a web page",
+                "To determine the color scheme of a web page",
+                "To serve as a mailing address for computers",
+                "To display images on a web page"
+              ],
+              "answer": "To serve as a mailing address for computers",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What does web development entail?",
+              "choices": [
+                "Building and maintaining websites and web applications",
+                "Creating marketing campaigns",
+                "Designing logos for businesses",
+                "Producing TV commercials"
+              ],
+              "answer": "Building and maintaining websites and web applications",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "How is web development categorized?",
+              "choices": [
+                "Front-end and server-side",
+                "Database and backend",
+                "Front-end and back-end",
+                "API and client-side"
+              ],
+              "answer": "Front-end and back-end",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: A domain name corresponds to an IP address.",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "True or False: All components of a website fall under front-end development.",
+              "answer": "False",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "Explain what web development is in a short answer.",
+              "answer": "Web development is the process of creating and maintaining websites and web applications.",
+              "question_type": "SHORT_ANSWER"
+            }
+          ]
+        }
+      ],
+      "num_questions": 6,
+      "time_prediction": 9,
+      "lastEdited": "2024-03-31T15:35:55.213Z"
+    }
+  ],
+  "CS 182": [
+    {
+      "id": "01744392-07b2-4b47-8c0c-5b8b0844f0c",
+      "title": "CS182 - Week 8 Quiz",
+      "variations": [
+        {
+          "questions": [
+            {
+              "question": "What is the function of a server in web development?",
+              "choices": [
+                "Serve web pages to client computers",
+                "Write code for websites",
+                "Design website layouts",
+                "Provide Internet access"
+              ],
+              "answer": "Serve web pages to client computers",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What is an IP address used for?",
+              "choices": [
+                "Tracking web traffic",
+                "Identifying a computer on a network",
+                "Downloading web pages",
+                "Storing website data"
+              ],
+              "answer": "Identifying a computer on a network",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What is the main goal of web development?",
+              "choices": [
+                "Create software applications",
+                "Develop mobile games",
+                "Design user interfaces",
+                "Create and maintain websites"
+              ],
+              "answer": "Create and maintain websites",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: All computers have an IP address.",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "True or False: Web development only involves building website layouts.",
+              "answer": "False",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "What does the term 'front end development' refer to in web development?",
+              "answer": "Creating the user interface of a website",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Explain what a domain name is in relation to IP addresses.",
+              "answer": "A domain name is a human-readable address that corresponds to an IP address, making it easier for users to access websites.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "List two components of building a website.",
+              "answer": "Front end and back end development",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Define web development in your own words.",
+              "answer": "Web development is the process of creating and maintaining websites and web applications.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What is the role of a web developer?",
+              "answer": "To create and maintain websites and web applications.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Explain the difference between front end and back end development.",
+              "answer": "Front end development focuses on the user interface and user experience, while back end development deals with server-side logic and database interactions.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "How are domain names related to IP addresses?",
+              "answer": "Domain names are mapped to IP addresses in DNS servers to translate human-readable addresses into numerical IP addresses for computer communication.",
+              "question_type": "SHORT_ANSWER"
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "question": "What is the process of creating and maintaining websites and web applications?",
+              "choices": [
+                "A. Web server",
+                "B. Web browser",
+                "C. Web development",
+                "D. Web hosting"
+              ],
+              "answer": "C. Web development",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What category of development involves the parts of a website that are visible to users?",
+              "choices": [
+                "A. Front end development",
+                "B. Back end development",
+                "C. Full stack development",
+                "D. Web design"
+              ],
+              "answer": "A. Front end development",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What does IP address stand for?",
+              "choices": [
+                "A. Internet Protocol address",
+                "B. Internal Protocol address",
+                "C. Internet Provider address",
+                "D. Internal Provider address"
+              ],
+              "answer": "A. Internet Protocol address",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: Web development is only focused on creating basic websites.",
+              "answer": "FALSE",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "True or False: The back end of web development involves the parts of a website that are visible to users.",
+              "answer": "FALSE",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "What is the term used for a computer that serves web pages to client computers?",
+              "answer": "Web server",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What is the function of an IP address?",
+              "answer": "Mailing address for computers",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What is the term for the address that corresponds to a server's IP address?",
+              "answer": "Domain name",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What does web development entail?",
+              "answer": "Creating and maintaining websites and web applications",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "How can web development be categorized?",
+              "answer": "Front end and back end",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What are the components of building a website?",
+              "answer": "Multiple components including front end and back end development",
+              "question_type": "SHORT_ANSWER"
+            }
+          ]
+        }
+      ],
+      "num_questions": 11,
+      "time_prediction": 16.5,
+      "lastEdited": "2024-03-31T02:39:00.628Z"
+    },
+    {
+      "id": "01744392-07b2-4b47-8c0c-5b8b0844f0c",
+      "title": "CS182 - Week 7 Quiz",
+      "variations": [
+        {
+          "questions": [
+            {
+              "question": "What is the function of a server in web development?",
+              "choices": [
+                "Serve web pages to client computers",
+                "Write code for websites",
+                "Design website layouts",
+                "Provide Internet access"
+              ],
+              "answer": "Serve web pages to client computers",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What is an IP address used for?",
+              "choices": [
+                "Tracking web traffic",
+                "Identifying a computer on a network",
+                "Downloading web pages",
+                "Storing website data"
+              ],
+              "answer": "Identifying a computer on a network",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What is the main goal of web development?",
+              "choices": [
+                "Create software applications",
+                "Develop mobile games",
+                "Design user interfaces",
+                "Create and maintain websites"
+              ],
+              "answer": "Create and maintain websites",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: All computers have an IP address.",
+              "answer": "True",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "True or False: Web development only involves building website layouts.",
+              "answer": "False",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "What does the term 'front end development' refer to in web development?",
+              "answer": "Creating the user interface of a website",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Explain what a domain name is in relation to IP addresses.",
+              "answer": "A domain name is a human-readable address that corresponds to an IP address, making it easier for users to access websites.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "List two components of building a website.",
+              "answer": "Front end and back end development",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Define web development in your own words.",
+              "answer": "Web development is the process of creating and maintaining websites and web applications.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What is the role of a web developer?",
+              "answer": "To create and maintain websites and web applications.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "Explain the difference between front end and back end development.",
+              "answer": "Front end development focuses on the user interface and user experience, while back end development deals with server-side logic and database interactions.",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "How are domain names related to IP addresses?",
+              "answer": "Domain names are mapped to IP addresses in DNS servers to translate human-readable addresses into numerical IP addresses for computer communication.",
+              "question_type": "SHORT_ANSWER"
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "question": "What is the process of creating and maintaining websites and web applications?",
+              "choices": [
+                "A. Web server",
+                "B. Web browser",
+                "C. Web development",
+                "D. Web hosting"
+              ],
+              "answer": "C. Web development",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What category of development involves the parts of a website that are visible to users?",
+              "choices": [
+                "A. Front end development",
+                "B. Back end development",
+                "C. Full stack development",
+                "D. Web design"
+              ],
+              "answer": "A. Front end development",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "What does IP address stand for?",
+              "choices": [
+                "A. Internet Protocol address",
+                "B. Internal Protocol address",
+                "C. Internet Provider address",
+                "D. Internal Provider address"
+              ],
+              "answer": "A. Internet Protocol address",
+              "question_type": "MULTIPLE_CHOICE"
+            },
+            {
+              "question": "True or False: Web development is only focused on creating basic websites.",
+              "answer": "FALSE",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "True or False: The back end of web development involves the parts of a website that are visible to users.",
+              "answer": "FALSE",
+              "question_type": "TRUE_FALSE"
+            },
+            {
+              "question": "What is the term used for a computer that serves web pages to client computers?",
+              "answer": "Web server",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What is the function of an IP address?",
+              "answer": "Mailing address for computers",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What is the term for the address that corresponds to a server's IP address?",
+              "answer": "Domain name",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What does web development entail?",
+              "answer": "Creating and maintaining websites and web applications",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "How can web development be categorized?",
+              "answer": "Front end and back end",
+              "question_type": "SHORT_ANSWER"
+            },
+            {
+              "question": "What are the components of building a website?",
+              "answer": "Multiple components including front end and back end development",
+              "question_type": "SHORT_ANSWER"
+            }
+          ]
+        }
+      ],
+      "num_questions": 11,
+      "time_prediction": 16.5,
+      "lastEdited": "2024-03-31T02:39:00.628Z"
+    }
+  ]
+}
