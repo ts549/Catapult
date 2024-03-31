@@ -42,7 +42,11 @@ function BaseDemo() {
   const submitFile = async () => {
     setIsLoading(true);
     const body = new FormData();
-    body.append('type', 'video');
+    if (file[0]?.type === 'application/pdf') {
+      body.append('type', 'pdf');
+    } else {
+      body.append('type', 'video');
+    }
     body.append('file', file[0]);
     body.append('multiple_choice', numMC);
     body.append('true_false', numTF);
@@ -107,7 +111,7 @@ function BaseDemo() {
               console.log('accepted files', files);
             }}
             multiple={false}
-            accept={['video/mp4', 'video/*']}
+            accept={['video/mp4', 'video/*', 'application/pdf']}
             activateOnClick={!file}
           >
             <Group
