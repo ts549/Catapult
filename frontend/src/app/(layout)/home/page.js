@@ -42,6 +42,11 @@ function BaseDemo() {
   const submitFile = async () => {
     setIsLoading(true);
     const body = new FormData();
+    if (file[0]?.type === 'application/pdf') {
+      body.append('type', 'pdf');
+    } else {
+      body.append('type', 'video');
+    }
     body.append('file', file[0]);
     body.append('multiple_choice', numMC);
     body.append('true_false', numTF);

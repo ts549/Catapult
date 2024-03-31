@@ -50,12 +50,18 @@ def transcribe_audio(input_file):
 # VIDEO UPLOAD
 
 UPLOAD_FOLDER = './videos'
-ALLOWED_EXTENSIONS = {'mp4', 'mov'}
+VIDEO_EXTENSIONS = {'mp4', 'mov'}
+PDF_EXTENSIONS = {'pdf'}
 
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    if '.' in filename:
+       extension = filename.rsplit('.', 1)[1].lower()
+       if extension in VIDEO_EXTENSIONS:
+          return {"valid": True, "type": 'video'}
+       elif extension in PDF_EXTENSIONS:
+          return {"valid": True, "type": 'pdf'}
+    return {'valid': False, 'type': ''}
 
 def save_file(request):
     # check if the post request has the file part
@@ -69,7 +75,8 @@ def save_file(request):
     if file.filename == '':
         abort(make_response(jsonify(message="No selected file"), 400))
 
-    if file and allowed_file(file.filename):
+    file_valid = allowed_file(file.filename)
+    if file and file_valid['valid']:
         myuuid = str(uuid.uuid4())
         given_filename = secure_filename(file.filename)
         filename = "video.mp4"
@@ -84,6 +91,6 @@ def save_file(request):
         file_path = os.path.join(path, filename)
         file.save(file_path)
 
-        return {"path": file_path, "name": given_filename}
-
-
+        return {"path": file_path, "name": given_filename, "type": file_valid['type']}
+    print(file_valid)
+    abort(make_response(jsonify(message="Invalid file type"), 400))

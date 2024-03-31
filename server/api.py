@@ -18,16 +18,35 @@ def test():
 def upload_file():
     file = save_file(request)
     print("DONE SAVING")
-    audio_path = split_video_audio(file['path'])
-    print("DONE SPLITTING")
-    transcription = transcribe_audio(audio_path)
-    print("DONE TRANSCRIBING")
-    video_transcription = build_transcript(file)
-    parts = file['path'].split('/')
-    id = parts[2]
-    questions = create_quiz(transcription, video_transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
-    print("DONE QUESTIONS")
-    data = {'id': id, 'status': 'Success', 'message': 'File saved', 'video_path': file, "audio_path": audio_path, "transcription": transcription, "questions": questions}
+    if (file['type'] == 'video'):
+        video_var = True
+        audio_path = split_video_audio(file['path'])
+        print("DONE SPLITTING")
+        transcription = transcribe_audio(audio_path)
+        print("DONE TRANSCRIBING")
+        if video_var:
+            video_transcription = build_transcript(file['path'], file['type'])
+            questions = create_quiz(transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"], video_transcription)
+            print("DONE QUESTIONS")
+            parts = file['path'].split('/')
+            id = parts[2]
+            data = {'id': id, 'status': 'Success', 'message': 'File saved', 'video_path': file, "audio_path": audio_path, "transcription": transcription, "questions": questions}
+        else:
+            questions = create_quiz(transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
+            print("DONE QUESTIONS")
+            parts = file['path'].split('/')
+            id = parts[2]
+            data = {'id': id, 'status': 'Success', 'message': 'File saved', "transcription": transcription, "questions": questions}
+
+
+    elif (file['type'] == 'pdf'):
+        transcription = build_transcript(file['path'], file['type'])
+        questions = create_quiz(transcription, request.form["multiple_choice"], request.form["true_false"], request.form["short_answer"], request.form["variations"])
+        print("DONE QUESTIONS")
+        parts = file['path'].split('/')
+        id = parts[2]
+        data = {'id': id, 'status': 'Success', 'message': 'File saved', "transcription": transcription, "questions": questions}
+
     return make_response(jsonify(data), 200)
 
 
