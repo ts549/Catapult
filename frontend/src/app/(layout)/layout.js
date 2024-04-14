@@ -15,10 +15,11 @@ export default function RootLayout({ children }) {
         <div className="w-full h-[100%] bg-white overflow-y-auto">
           {path === '/home' && (
             <div className="w-[100%] h-[27%] flex justify-center items-center">
-              <div className="flex w-[95%] h-[80%] bg-[#1F1F1F] rounded-l items-center justify-center">
-                <span className="text-center text-white text-2xl font-bold">
-                  Welcome back
+              <div className="text-center flex flex-col w-[95%] h-[80%] bg-[#E0F1D9] rounded-l items-center justify-center px-8">
+                <span className="text-black text-3xl font-bold">
+                  Welcome back!
                 </span>
+                <span className="text-lg">What will you create today?</span>
               </div>
             </div>
           )}

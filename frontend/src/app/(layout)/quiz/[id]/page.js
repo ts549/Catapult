@@ -16,7 +16,6 @@ import {
   IconChevronDown,
   IconEdit,
   IconLineDashed,
-  IconMenu,
   IconMenu2,
   IconPlus,
   IconX,
@@ -33,7 +32,21 @@ function page({ params }) {
     deserialize: JSON.parse,
   });
 
-  const data = user?.drafts.find((draft) => draft.id === params.id);
+  const getQuizById = () => {
+    for (const course in user) {
+      if (user.hasOwnProperty(course)) {
+        const quizzes = user[course];
+        for (const quiz of quizzes) {
+          if (quiz.id === params.id) {
+            return quiz;
+          }
+        }
+      }
+    }
+    return null;
+  };
+
+  const data = getQuizById();
 
   const [title, setTitle] = useState(data?.title);
   const [variation, setVariation] = useState(0);
